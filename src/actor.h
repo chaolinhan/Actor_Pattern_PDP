@@ -4,5 +4,5 @@
 #ifndef ROLE_TIMER
 #define ROLE_TIMER -1
 #endif
-void actorCode(int role);
+void actorCode(int *role);
 void timerCode();
