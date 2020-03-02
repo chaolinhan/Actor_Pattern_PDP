@@ -37,7 +37,8 @@ int main(int argc, char *argv[]) {
   if (statusCode == 2) {// acto as master
 		timerID = startWorkerProcess();
 		MPI_Send(&timerID, 1, MPI_INT, timerID, ROLE_TAG, MPI_COMM_WORLD);
-		//int p2 = startWorkerProcess();
+		int p2 = startWorkerProcess();
+		MPI_Send(&timerID, 1, MPI_INT, p2, ROLE_TAG, MPI_COMM_WORLD);
 	}
 
 	processPoolFinalise();
