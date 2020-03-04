@@ -11,6 +11,10 @@
 #define ROLE_TAG 22
 #endif
 
+#ifndef TIME_TAG
+#define TIME_TAG 33
+#endif
+
 int main(int argc, char *argv[]) {
 	MPI_Init(&argc, &argv);
 // Input
@@ -19,7 +23,6 @@ int main(int argc, char *argv[]) {
   int initN, Ncell, maxN, initInfection, timeAll;
   char s[20];
   int i = 0;
-	int timerID;
   if (inputCheck(argc, argv) == 0) {
     printf("Check input\nUsage: model [input parameter files]\n");
   } else {
@@ -35,10 +38,31 @@ int main(int argc, char *argv[]) {
 	}
 // Master
   if (statusCode == 2) {// acto as master
-		timerID = startWorkerProcess();
-		MPI_Send(&timerID, 1, MPI_INT, timerID, ROLE_TAG, MPI_COMM_WORLD);
+		int p1 = startWorkerProcess();
+		//MPI_Send(&timerID, 1, MPI_INT, timerID, ROLE_TAG, MPI_COMM_WORLD);
 		int p2 = startWorkerProcess();
-		MPI_Send(&timerID, 1, MPI_INT, p2, ROLE_TAG, MPI_COMM_WORLD);
+		//MPI_Send(&timerID, 1, MPI_INT, p2, ROLE_TAG, MPI_COMM_WORLD);
+
+		double tStart = MPI_Wtime(), tNow;
+		int month = (int)(tNow-tStart)/5;
+		while(MPI_Wtime()-tStart<=20.0) {
+			tNow = MPI_Wtime();
+			if ((int)(tNow-tStart)/5 != month) {
+				month = (int)(tNow-tStart)/5;
+				printf("Timer report: month %d\n", month);
+
+
+				MPI_Send(&month, 1, MPI_INT, p1, TIME_TAG, MPI_COMM_WORLD);
+				MPI_Send(&month, 1, MPI_INT, p2, TIME_TAG, MPI_COMM_WORLD);
+				printf("Broadcasted\n");
+			}
+
+		}
+
+    int masterStatus = masterPoll();
+		// while (masterStatus) {
+    //   masterStatus = masterPoll();
+    // }
 	}
 
 	processPoolFinalise();

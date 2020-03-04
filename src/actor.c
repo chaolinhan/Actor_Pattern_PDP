@@ -3,30 +3,27 @@
 
 void actorCode(int *role) {
 	int actorStatus = 1;
+	printf("act start\n");
+	int localRank, month=0;
+	MPI_Comm_rank(MPI_COMM_WORLD, &localRank);
+	printf("Actor ready %d\n", localRank);
 	while (actorStatus) {
-  	printf("act start\n");
-		int timerID, localRank;
-		MPI_Comm_rank(MPI_COMM_WORLD, &localRank);
 
+			printf("Do something\n");
+			MPI_Recv(&month, 1, MPI_INT, getCommandData(), 33, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+		// // MPI_Recv(&timerID, 1, MPI_INT, getCommandData(), 22, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+		// // TODO: MAKE IT A FRAMEWORK
+		// if (localRank == timerID) {
+		// 	timerCode();
+		// }
+		// if (localRank != timerID) {
+		//
+		// }
 
-		MPI_Recv(&timerID, 1, MPI_INT, getCommandData(), 22, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-		// TODO: MAKE IT A FRAMEWORK
-		if (localRank == timerID) {
-			timerCode();
-		}
-		if (localRank != timerID) {
-			int month = 0, oldMonth = 0;
-			while (oldMonth < 3) {
-				if (month !=oldMonth) {
-					oldMonth = month;
-					printf("Month %d signal received\n", oldMonth);
-				}
-			}
-		}
-
-		actorStatus = workerSleep();
+		if (month == 4)
+			actorStatus = workerSleep();
 	}
-
+	actorStatus = workerSleep();
 	return;
 }
 
