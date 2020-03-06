@@ -11,7 +11,8 @@ SRC = \
 	lib/ran2.c \
 	lib/actor.c \
 	role/squirrel.c \
-	role/land.c
+	role/land.c \
+	role/timer.c
 
 LFLAGS = -lm -O3
 CC=mpicc

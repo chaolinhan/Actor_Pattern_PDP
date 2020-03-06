@@ -1,6 +1,6 @@
 #include "squirrel.h"
 
-void squirrelRUN(int initN, int Ncell, int maxN, int initInfection) {
+void squirrelRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
 	// printf("️🐿️ acting\n");
 	MPI_Status status;
 	int isInfected, rank;

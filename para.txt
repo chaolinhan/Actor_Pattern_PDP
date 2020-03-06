@@ -2,4 +2,4 @@ initial: 5
 cells: 16
 max: 30
 infected: 2
-month: 24
+month: 8

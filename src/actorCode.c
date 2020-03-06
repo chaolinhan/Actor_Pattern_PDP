@@ -1,6 +1,6 @@
 #include "actorCode.h"
 
-void actorCode(int initN, int Ncell, int maxN, int initInfection) {
+void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
   // printf("actor started\n");
   int parentID = getCommandData();
   int rank;
@@ -13,11 +13,14 @@ void actorCode(int initN, int Ncell, int maxN, int initInfection) {
     // printf("rank %d ROLE assigned: %d\n", rank, role);
     switch (role) {
     case ROLE_SQUIRREL:
-      actorRUN(squirrelRUN, initN, Ncell, maxN, initInfection);
+      actorRUN(squirrelRUN, initN, Ncell, maxN, initInfection, timeAll);
       break;
     case ROLE_LAND:
-      actorRUN(landRUN, initN, Ncell, maxN, initInfection);
+      actorRUN(landRUN, initN, Ncell, maxN, initInfection, timeAll);
       break;
+		case ROLE_TIMER:
+			actorRUN(timerRUN, initN, Ncell, maxN, initInfection, timeAll);
+			break;
     }
     // MPI_Iprobe(parentID, ROLE_TAG, MPI_COMM_WORLD, &flag, &status);
 

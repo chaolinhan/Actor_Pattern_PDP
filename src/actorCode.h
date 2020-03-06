@@ -3,8 +3,11 @@
 #include "mpi.h"
 #include "../role/squirrel.h"
 #include "../role/land.h"
+#include "../role/timer.h"
+
+// ROLE code
 #ifndef ROLE_TIMER
-#define ROLE_TIMER -1
+#define ROLE_TIMER 30
 #endif
 
 #ifndef ROLE_SQUIRREL
@@ -15,6 +18,7 @@
 #define ROLE_LAND 20
 #endif
 
+// Squirrel message TAG
 #ifndef ROLE_TAG
 #define ROLE_TAG 10
 #endif
@@ -27,4 +31,4 @@
 #define POS_TAG 12
 #endif
 
-void actorCode(int initN, int Ncell, int maxN, int initInfection);
+void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll);

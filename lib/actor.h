@@ -8,6 +8,6 @@
 #include <stdlib.h>
 
 
-void actorRUN(void (*roleRUN)(int, int, int, int), int initN, int Ncell, int maxN, int initInfection);
+void actorRUN(void (*roleRUN)(int, int, int, int, int), int initN, int Ncell, int maxN, int initInfection, int timeAll);
 
 #endif

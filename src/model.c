@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
   // Actor
   int statusCode = processPoolInit();
   if (statusCode == 1) { // act as actor
-    actorCode(initN, Ncell, maxN, initInfection);
+    actorCode(initN, Ncell, maxN, initInfection, timeAll);
   }
   // Master
   if (statusCode == 2) { // act as master
@@ -70,9 +70,9 @@ int main(int argc, char *argv[]) {
     int masterStatus = masterPoll();
 
 		// Used as a block to seek for finalize comditions
-    while (masterStatus) {
-      masterStatus = masterPoll();
-    }
+    // while (masterStatus) {
+    //   masterStatus = masterPoll();
+    // }
   }
 
   processPoolFinalise();
