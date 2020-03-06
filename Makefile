@@ -4,9 +4,15 @@ TESTSRC = \
 SRC = \
   src/model.c \
 	src/utility.c \
-	src/pool.c \
-	src/actor.c
-LFLAGS =-lm
+	src/actorCode.c \
+	src/master.c \
+	lib/pool.c \
+	lib/squirrel-functions.c \
+	lib/ran2.c \
+	lib/actor.c \
+	role/squirrel.c
+
+LFLAGS = -lm -O3
 CC=mpicc
 
 all:

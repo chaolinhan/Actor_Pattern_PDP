@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 #include "mpi.h"
-#include "pool.h"
+#include "../lib/pool.h"
 
 static void workerCode();
 
