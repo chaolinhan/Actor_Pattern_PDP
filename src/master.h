@@ -7,6 +7,7 @@
 #include "../lib/squirrel-functions.h"
 
 void MasterSimulationInit(int initN, int Ncell, int initInfection, int timeAll);
-void startSquirrel(int initN, int initInfection, long seed);
 
+void startSquirrel(int initN, int initInfection, long seed);
+void startLand(int initN, int initInfection);
 #endif

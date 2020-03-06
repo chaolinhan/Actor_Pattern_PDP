@@ -10,7 +10,8 @@ SRC = \
 	lib/squirrel-functions.c \
 	lib/ran2.c \
 	lib/actor.c \
-	role/squirrel.c
+	role/squirrel.c \
+	role/land.c
 
 LFLAGS = -lm -O3
 CC=mpicc
