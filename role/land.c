@@ -39,7 +39,9 @@ void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
             populationInflux[0] + populationInflux[1] + populationInflux[2];
         allInfectionLevel =
             infectionLevel[0] + infectionLevel[1] + infectionLevel[2];
+				printf("Land on rank %2d, month %2d, influx: %2d. infected: %2d\n", rank, month, allPopulationInflux, allInfectionLevel);
       }
+
     }
 
     // Communicate with Squirrels
@@ -58,9 +60,9 @@ void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
       if (isInfected == 1)
         moInfectionLevel++;
     }
-		
 
+	  if(shouldWorkerStop()) break;
   }
 
-
+  return;
 }

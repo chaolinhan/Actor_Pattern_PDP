@@ -94,10 +94,7 @@ void squirrelRUN(int initN, int Ncell, int maxN, int initInfection,
 		if ( cur >=50 ) cur = cur % 50;
 
 		// should
-		isAlive = shouldWorkerStop();
+		if (shouldWorkerStop()) break;
   }
-
-
-
-
+	return;
 }
