@@ -43,19 +43,21 @@ void startSquirrel(int initN, int initInfection, long seed) {
 	return;
 }
 
+// TODO : 16 is a problem
 int startLand(int initN, int initInfection) {
-	int lID, msg;
+	int lID, msg, i;
+	for (i = 0; i<16; i++) {
+		lID = startWorkerProcess();
+		// Send role
+		msg = ROLE_LAND;
+		MPI_Bsend(&msg, 1, MPI_INT, lID, ROLE_TAG, MPI_COMM_WORLD);
+	}
 
-	lID = startWorkerProcess();
-
-	// Send role
-	msg = ROLE_LAND;
-	MPI_Bsend(&msg, 1, MPI_INT, lID, ROLE_TAG, MPI_COMM_WORLD);
 	return lID;
 }
 
 void startTimer(int timeAll) {
-  int tID, msg;
+  int tID, msg, i;
   tID = startWorkerProcess();
 	// Send role
 	msg = ROLE_TIMER;

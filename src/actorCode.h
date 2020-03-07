@@ -5,7 +5,7 @@
 #include "../role/land.h"
 #include "../role/timer.h"
 
-// ROLE code
+// MASTER to ACTOR ROLE code
 #ifndef ROLE_TIMER
 #define ROLE_TIMER 30
 #endif
@@ -18,7 +18,7 @@
 #define ROLE_LAND 20
 #endif
 
-// Squirrel message TAG
+// MASTER to Squirrel TAG
 #ifndef ROLE_TAG
 #define ROLE_TAG 10
 #endif
@@ -34,5 +34,20 @@
 #ifndef LAND_TAG
 #define LAND_TAG 13
 #endif
+
+// Squirrel to Land TAG
+#ifndef STEP_INF_TAG
+#define STEP_INF_TAG 20
+#endif
+
+#ifndef POP_INF_TAG
+#define POP_INF_TAG 21
+#endif
+
+#ifndef INF_LV_TAG
+#define INF_LV_TAG 22
+#endif
+
+// Land to Timer TAG
 
 void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll);
