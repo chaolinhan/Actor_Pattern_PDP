@@ -8,7 +8,7 @@ void timerRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
   printf("Timer started\n");
   month = 0;
   tStart = MPI_Wtime();
-  while (month < timeAll) {
+  while (month <= timeAll) {
     tNow = MPI_Wtime();
     if ((int)(tNow - tStart) / 2 != month) {
       month++;

@@ -18,10 +18,10 @@ void squirrelRUN(int initN, int Ncell, int maxN, int initInfection,
   printf("🐿️ on %2d READY\tisInfected: %d\tposition: (%.2f, %.2f)\n", rank,
          isInfected, bornPOS[0], bornPOS[1]);
 
-  // Receive land actor rank
-	int landID;
-	MPI_Recv(&landID, 1, MPI_INT, MPI_ANY_SOURCE, LAND_TAG, MPI_COMM_WORLD,
-					 &status);
+  // // Receive land actor rank
+	// int landID;
+	// MPI_Recv(&landID, 1, MPI_INT, MPI_ANY_SOURCE, LAND_TAG, MPI_COMM_WORLD,
+	// 				 &status);
 
   // Squirrel action begin
   int popInf[50], infLv[50];

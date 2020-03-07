@@ -5,6 +5,11 @@
 #include "../role/land.h"
 #include "../role/timer.h"
 
+// RANK
+#ifndef TIMER_ID
+#define TIMER_ID 1
+#endif
+
 // MASTER to ACTOR ROLE code
 #ifndef ROLE_TIMER
 #define ROLE_TIMER 30
@@ -49,5 +54,8 @@
 #endif
 
 // Land to Timer TAG
+#ifndef MONTH_TAG
+#define MONTH_TAG 30
+#endif
 
 void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll);
