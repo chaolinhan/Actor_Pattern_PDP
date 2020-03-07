@@ -4,7 +4,7 @@ void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
   MPI_Status status;
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  printf("Land on %2d READY\n", rank);
+  // printf("Land on %2d READY\n", rank);
 
   // Land action begin
   int populationInflux[3] = {0, 0, 0},
