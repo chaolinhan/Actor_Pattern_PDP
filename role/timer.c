@@ -5,13 +5,16 @@ void timerRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
   int rank, month, ii;
   double tStart, tNow;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  printf("Timer started\n");
+  printf("Timer on %d READY, simulation length: %d\n", rank, timeAll);
   month = 0;
   tStart = MPI_Wtime();
+
+	// Timer acts
   while (month <= timeAll) {
+		// printf("T\n");
     tNow = MPI_Wtime();
 		// Month change every two seconds
-    if ((int)(tNow - tStart) / 2 != month) {
+    if ((int)(tNow - tStart) >= month+1) {
       month++;
       printf("Timer report: month %d\n", month);
 
@@ -21,7 +24,7 @@ void timerRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
 			}
     }
 
-		if(shouldWorkerStop()) break;
+		// if(shouldWorkerStop()) break;
 
   }
   return;

@@ -4,7 +4,7 @@ void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
   MPI_Status status;
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  printf("Land on rank %d READY\n", rank);
+  printf("Land on %2d READY\n", rank);
 
   // Land action begin
   int populationInflux[3] = {0, 0, 0},
@@ -29,7 +29,7 @@ void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
       month = tempMonth;
       if (month >= 1) {
         populationInflux[cur] = moPopulationInflux;
-        infectionLevel = moInfectionLevel;
+        infectionLevel[cur] = moInfectionLevel;
         cur++;
         if (cur >= 3)
           cur -= 3;
@@ -39,7 +39,7 @@ void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
             populationInflux[0] + populationInflux[1] + populationInflux[2];
         allInfectionLevel =
             infectionLevel[0] + infectionLevel[1] + infectionLevel[2];
-				printf("Land on rank %2d, month %2d, influx: %2d. infected: %2d\n", rank, month, allPopulationInflux, allInfectionLevel);
+				printf("Land on rank %2d, month %2d, influx: %2d, infected: %2d\n", rank, month, allPopulationInflux, allInfectionLevel);
       }
 
     }
@@ -52,8 +52,10 @@ void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
     MPI_Iprobe(MPI_ANY_SOURCE, STEP_INF_TAG, MPI_COMM_WORLD, &flag, &status);
     // Handshake success
     if (flag) {
-      MPI_Recv(&isInfected, 1, MPI_INT, status.MPI_SOURCE, MONTH_TAG,
+			// printf("\tHand shaked, Land %d and Squirrel %d\n", rank, status.MPI_SOURCE);
+      MPI_Recv(&isInfected, 1, MPI_INT, status.MPI_SOURCE, STEP_INF_TAG,
                MPI_COMM_WORLD, &status);
+		  // printf("Received: %d, from: %d\n", isInfected, status.MPI_SOURCE);
       moPopulationInflux++;
 			MPI_Bsend(&allPopulationInflux, 1, MPI_INT, status.MPI_SOURCE, POP_INF_TAG, MPI_COMM_WORLD);
 			MPI_Bsend(&allInfectionLevel, 1, MPI_INT, status.MPI_SOURCE, INF_LV_TAG, MPI_COMM_WORLD);
@@ -61,7 +63,7 @@ void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
         moInfectionLevel++;
     }
 
-	  if(shouldWorkerStop()) break;
+	  // if(shouldWorkerStop()) break;
   }
 
   return;

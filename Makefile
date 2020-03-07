@@ -1,6 +1,6 @@
 TESTSRC = \
   src/test.c \
-  src/pool.c
+  lib/pool.c
 SRC = \
   src/model.c \
 	src/utility.c \
@@ -14,7 +14,7 @@ SRC = \
 	role/land.c \
 	role/timer.c
 
-LFLAGS = -lm -O3
+LFLAGS = -lm -O2
 CC=mpicc
 
 all:
