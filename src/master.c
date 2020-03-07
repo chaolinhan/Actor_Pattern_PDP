@@ -6,8 +6,9 @@ void MasterSimulationInit(int initN, int Ncell, int initInfection,
   printf("Simulation started\ninitN = %d\n", initN);
   initialiseRNG(&seed);
   startTimer(timeAll); // consider void
+	startLand(initN, initInfection); // consider void
   startSquirrel(initN, initInfection, seed);
-  startLand(initN, initInfection); // consider void
+
 }
 
 void startSquirrel(int initN, int initInfection, long seed) {
@@ -42,7 +43,7 @@ void startSquirrel(int initN, int initInfection, long seed) {
 	return;
 }
 
-void startLand(int initN, int initInfection) {
+int startLand(int initN, int initInfection) {
 	int lID, msg;
 
 	lID = startWorkerProcess();
@@ -50,7 +51,7 @@ void startLand(int initN, int initInfection) {
 	// Send role
 	msg = ROLE_LAND;
 	MPI_Bsend(&msg, 1, MPI_INT, lID, ROLE_TAG, MPI_COMM_WORLD);
-
+	return lID;
 }
 
 void startTimer(int timeAll) {

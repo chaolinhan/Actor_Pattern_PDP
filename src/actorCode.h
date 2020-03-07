@@ -31,4 +31,8 @@
 #define POS_TAG 12
 #endif
 
+#ifndef LAND_TAG
+#define LAND_TAG 13
+#endif
+
 void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll);
