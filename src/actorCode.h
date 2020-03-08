@@ -6,6 +6,11 @@
 #include "../role/timer.h"
 
 // RANK
+
+#ifndef MASTER_ID
+#define MASTER_ID 0
+#endif
+
 #ifndef TIMER_ID
 #define TIMER_ID 1
 #endif
@@ -38,6 +43,10 @@
 
 #ifndef LAND_TAG
 #define LAND_TAG 13
+#endif
+
+#ifndef POP_CTRL_TAG
+#define POP_CTRL_TAG 14
 #endif
 
 // Squirrel to Land TAG

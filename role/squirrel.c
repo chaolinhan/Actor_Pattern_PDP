@@ -4,6 +4,7 @@
 void squirrelRUN(int initN, int Ncell, int maxN, int initInfection,
                  int timeAll) {
   // printf("️🐿️ acting\n");
+
   MPI_Status status;
   int isInfected, rank, isAlive = 1;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -26,6 +27,9 @@ void squirrelRUN(int initN, int Ncell, int maxN, int initInfection,
   // MPI_Recv(&landID, 1, MPI_INT, MPI_ANY_SOURCE, LAND_TAG, MPI_COMM_WORLD,
   // 				 &status);
 
+	// Let MASTER know
+	MPI_Bsend(&isAlive, 1, MPI_INT, MASTER_ID, POP_CTRL_TAG, MPI_COMM_WORLD);
+
   // Squirrel action begin
   int popInf[50], infLv[50];
   memset(popInf, 0, sizeof(popInf));
@@ -40,11 +44,13 @@ void squirrelRUN(int initN, int Ncell, int maxN, int initInfection,
 
   // Squirrel acts
   while (isAlive) {
-    // printf("Alive\n");
+
     // Die
     if (infStep >= 50) {
       if (willDie(&state)) {
         // printf("\tSquirrel %d DEAD X\n", rank);
+				isAlive = 0;
+				MPI_Bsend(&isAlive, 1, MPI_INT, MASTER_ID, POP_CTRL_TAG, MPI_COMM_WORLD);
         return;
       }
     }
@@ -98,6 +104,7 @@ void squirrelRUN(int initN, int Ncell, int maxN, int initInfection,
     // if (rank == 18) {
     // 	printf("\t now: (%.2f, %.2f), sending to %d\n", x, y, cellID+2);
     // }
+		if (shouldWorkerStop()) break;
     MPI_Recv(&tempPopInf, 1, MPI_INT, cellID + 2, POP_INF_TAG, MPI_COMM_WORLD,
              &status);
     MPI_Recv(&tempInfLv, 1, MPI_INT, cellID + 2, INF_LV_TAG, MPI_COMM_WORLD,
@@ -109,7 +116,7 @@ void squirrelRUN(int initN, int Ncell, int maxN, int initInfection,
       cur = cur % 50;
 
     // should
-    // if (shouldWorkerStop()) break;
+    if (shouldWorkerStop()) break;
   }
   return;
 }

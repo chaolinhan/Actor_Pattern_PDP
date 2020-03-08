@@ -27,5 +27,9 @@ void timerRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
 		// if(shouldWorkerStop()) break;
 
   }
+  // Send end signal to MASTER
+	int isAlive = -1;
+	printf("Timer sending end signal\n");
+	MPI_Bsend(&isAlive, 1, MPI_INT, MASTER_ID, POP_CTRL_TAG, MPI_COMM_WORLD);
   return;
 }

@@ -39,7 +39,7 @@ void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
             populationInflux[0] + populationInflux[1] + populationInflux[2];
         allInfectionLevel =
             infectionLevel[0] + infectionLevel[1] + infectionLevel[2];
-				printf("Land on rank %2d, month %2d, influx: %2d, infected: %2d\n", rank, month, allPopulationInflux, allInfectionLevel);
+				printf("Land on rank %2d, month %2d \tinflux: %2d\tinfected: %2d\n", rank, month, allPopulationInflux, allInfectionLevel);
       }
 
     }
@@ -63,7 +63,7 @@ void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
         moInfectionLevel++;
     }
 
-	  // if(shouldWorkerStop()) break;
+	  if(shouldWorkerStop()) break;
   }
 
   return;
