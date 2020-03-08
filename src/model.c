@@ -69,6 +69,7 @@ int main(int argc, char *argv[]) {
 				else if (isAlive == -1) {
 					sleep(1);
 					printf("FINISHED: Simulation Stoped. Population: %d\n", pop);
+					break;
 				}
 
 				if (pop >= maxN) {

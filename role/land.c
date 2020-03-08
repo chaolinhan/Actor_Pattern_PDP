@@ -53,6 +53,7 @@ void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
     // Handshake success
     if (flag) {
 			// printf("\tHand shaked, Land %d and Squirrel %d\n", rank, status.MPI_SOURCE);
+			if(shouldWorkerStop()) break;
       MPI_Recv(&isInfected, 1, MPI_INT, status.MPI_SOURCE, STEP_INF_TAG,
                MPI_COMM_WORLD, &status);
 		  // printf("Received: %d, from: %d\n", isInfected, status.MPI_SOURCE);
