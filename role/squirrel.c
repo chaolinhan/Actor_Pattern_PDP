@@ -10,11 +10,13 @@ void squirrelRUN(int initN, int Ncell, int maxN, int initInfection,
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
   // Receive infection status
+	if (shouldWorkerStop()) return;
   MPI_Recv(&isInfected, 1, MPI_INT, MPI_ANY_SOURCE, INF_TAG, MPI_COMM_WORLD,
            &status);
 
   // Receive initial position
   float bornPOS[2] = {0, 0};
+	if (shouldWorkerStop()) return;
   MPI_Recv(bornPOS, 2, MPI_FLOAT, MPI_ANY_SOURCE, POS_TAG, MPI_COMM_WORLD,
            &status);
   // printf("🐿️ on %2d READY, isInfected: %d, position: (%.2f, %.2f) cell "

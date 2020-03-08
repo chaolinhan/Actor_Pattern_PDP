@@ -14,6 +14,7 @@ void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
 		MPI_Status status;
 		// MPI_Iprobe(parentID, ROLE_TAG, MPI_COMM_WORLD, &flag, &st);
 		// if (flag) {
+		if (shouldWorkerStop()) break;
 		MPI_Recv(&role, 1, MPI_INT, parentID, ROLE_TAG, MPI_COMM_WORLD, &status);
 		// printf("rank %d ROLE assigned: %d\n", rank, role);
 		switch (role) {

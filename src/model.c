@@ -72,15 +72,18 @@ int main(int argc, char *argv[]) {
 					break;
 				}
 
-				if (pop >= maxN) {
-					printf("ERROR: Simulation Stoped (maximal allowed population reached)\n");
-					break;
-				}
-
       }
+
+
+			if (pop >= maxN) {
+				printf("ERROR: Simulation Stoped (maximal allowed population reached)\n");
+				break;
+			}
 
       masterStatus = masterPoll();
     }
+		printf("\t\tmaster break\n");
+
   }
 
   processPoolFinalise();
