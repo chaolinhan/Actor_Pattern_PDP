@@ -22,6 +22,9 @@ all:
 test:
 	$(CC) $(TESTSRC) -o $@ $(LFLAGS)
 
+run:
+	mpiexec_mpt -ppn 36 -n 216 ./model para.txt
+
 .PHONY : clean
 clean:
 	rm -f test
