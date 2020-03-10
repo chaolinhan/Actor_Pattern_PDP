@@ -1,9 +1,7 @@
-#include <stdio.h>
+#ifndef ACTORCODE_H
+#define ACTORCODE_H
+
 #include <stdlib.h>
-#include "mpi.h"
-#include "squirrel.h"
-#include "land.h"
-#include "timer.h"
 
 // RANK
 
@@ -26,6 +24,10 @@
 
 #ifndef ROLE_LAND
 #define ROLE_LAND 20
+#endif
+
+#ifndef ROLE_CTRL
+#define ROLE_CTRL 40
 #endif
 
 // MASTER to Squirrel TAG
@@ -73,3 +75,5 @@
 #endif
 
 void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll);
+
+#endif

@@ -1,3 +1,7 @@
+#include <mpi.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "../include/land.h"
 
 void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {

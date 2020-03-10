@@ -1,4 +1,11 @@
+#include <mpi.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "../include/timer.h"
+#include "../include/actorCode.h"
+#include "../lib/pool.h"
+#include "../lib/ran2.h"
+#include "../lib/squirrel-functions.h"
 
 void timerRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
   MPI_Status status;

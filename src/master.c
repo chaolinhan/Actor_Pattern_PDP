@@ -1,12 +1,13 @@
 #include "../include/master.h"
 
 void masterSimulationInit(int initN, int Ncell, int initInfection,
-                          int timeAll) {
+                          int timeAll, int maxN) {
   long seed = 20;
   printf("Simulation started\ninitN = %d\n", initN);
-  initialiseRNG(&seed);
+	initialiseRNG(&seed);
   startTimer(timeAll); // consider void
 	startLand(initN, initInfection); // consider void
+	startCTRL(maxN);
   startSquirrel(initN, initInfection, seed);
 
 }
@@ -45,7 +46,7 @@ void startSquirrel(int initN, int initInfection, long seed) {
 }
 
 // TODO : 16 is a problem
-int startLand(int initN, int initInfection) {
+void startLand(int initN, int initInfection) {
 	int lID, msg, i;
 	for (i = 0; i<16; i++) {
 		lID = startWorkerProcess();
@@ -54,15 +55,23 @@ int startLand(int initN, int initInfection) {
 		MPI_Bsend(&msg, 1, MPI_INT, lID, ROLE_TAG, MPI_COMM_WORLD);
 	}
 
-	return lID;
+	return;
 }
 
 void startTimer(int timeAll) {
-  int tID, msg, i;
+  int tID, msg;
   tID = startWorkerProcess();
 	// Send role
 	msg = ROLE_TIMER;
 	MPI_Bsend(&msg, 1, MPI_INT, tID, ROLE_TAG, MPI_COMM_WORLD);
+}
+
+void startCTRL(int maxN) {
+	int CID, msg;
+	CID = startWorkerProcess();
+	// Send role
+	msg = ROLE_CTRL;
+	MPI_Bsend(&msg, 1, MPI_INT, CID, ROLE_TAG, MPI_COMM_WORLD);
 }
 
 void masterTerminationCtrl(int maxN) {
