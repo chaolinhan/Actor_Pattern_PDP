@@ -3,7 +3,7 @@
 
 #include "string.h"
 #include "stdio.h"
-#include "../src/actorCode.h"
+#include "actorCode.h"
 #include "../lib/pool.h"
 #include "../lib/ran2.h"
 #include "../lib/squirrel-functions.h"

@@ -6,7 +6,8 @@
 #include "../lib/ran2.h"
 #include "../lib/squirrel-functions.h"
 
-void MasterSimulationInit(int initN, int Ncell, int initInfection, int timeAll);
+void masterSimulationInit(int initN, int Ncell, int initInfection, int timeAll);
+void masterTerminationCtrl(int maxN);
 
 void startSquirrel(int initN, int initInfection, long seed);
 int startLand(int initN, int initInfection);

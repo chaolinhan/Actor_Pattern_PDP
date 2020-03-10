@@ -2,10 +2,10 @@ TESTSRC = \
   src/test.c \
   lib/pool.c
 SRC = \
-  src/model.c \
-	src/utility.c \
+  src/main.c \
 	src/actorCode.c \
 	src/master.c \
+	src/utility.c \
 	lib/pool.c \
 	lib/squirrel-functions.c \
 	lib/ran2.c \

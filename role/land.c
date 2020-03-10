@@ -1,4 +1,4 @@
-#include "land.h"
+#include "../include/land.h"
 
 void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
   MPI_Status status;
@@ -15,7 +15,7 @@ void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
   int month = 0, cur = 0;
   int flag, ii, isInfected, tempMonth = 0;
 
-  while (month <= timeAll) {
+  while (month <= timeAll-1) {
 
     // Receive month from Timer
     MPI_Iprobe(TIMER_ID, MONTH_TAG, MPI_COMM_WORLD, &flag, &status);

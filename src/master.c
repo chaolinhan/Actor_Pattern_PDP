@@ -1,6 +1,6 @@
-#include "master.h"
+#include "../include/master.h"
 
-void MasterSimulationInit(int initN, int Ncell, int initInfection,
+void masterSimulationInit(int initN, int Ncell, int initInfection,
                           int timeAll) {
   long seed = 20;
   printf("Simulation started\ninitN = %d\n", initN);
@@ -38,6 +38,7 @@ void startSquirrel(int initN, int initInfection, long seed) {
     bornPOS[0] = (bornPOS[0]+diff)-(int)(bornPOS[0]+diff);
     diff=ran2(&seed);
     bornPOS[1] = (bornPOS[1]+diff)-(int)(bornPOS[1]+diff);
+		// sleep(1);
     MPI_Bsend(bornPOS, 2, MPI_FLOAT, sID, POS_TAG, MPI_COMM_WORLD);
   }
 	return;
@@ -62,4 +63,51 @@ void startTimer(int timeAll) {
 	// Send role
 	msg = ROLE_TIMER;
 	MPI_Bsend(&msg, 1, MPI_INT, tID, ROLE_TAG, MPI_COMM_WORLD);
+}
+
+void masterTerminationCtrl(int maxN) {
+
+	int pop = 0, cnt = 0;
+	int masterStatus = masterPoll();
+	// Used as a block to seek for finalize comditions
+	while (masterStatus) {
+	  printf("Waiting termination signal\n");
+		int isAlive, flag;
+		MPI_Status status;
+
+		// Population control
+		MPI_Iprobe(MPI_ANY_SOURCE, TIMER_CTRL_TAG, MPI_COMM_WORLD, &flag, &status);
+		if (flag) {
+			MPI_Recv(&isAlive, 1, MPI_INT, TIMER_ID, TIMER_CTRL_TAG,
+							 MPI_COMM_WORLD, &status);
+			sleep(1);
+			printf("\tFINISHED: Simulation Stoped. Population: %d\n", pop);
+			shutdownPool();
+			return;
+		}
+
+		MPI_Iprobe(MPI_ANY_SOURCE, POP_CTRL_TAG, MPI_COMM_WORLD, &flag, &status);
+		if (flag) {
+			MPI_Recv(&isAlive, 1, MPI_INT, status.MPI_SOURCE, POP_CTRL_TAG,
+							 MPI_COMM_WORLD, &status);
+		}
+
+		if (isAlive == 1) {
+			pop++;
+			printf("\t\tmaster receive birth[V] signal from squirrel %d. pop: %d\n", status.MPI_SOURCE, pop);
+		}
+
+		else if (isAlive == 0) {
+			pop--;
+			printf("\t\tmaster receive death[X] signal from squirrel %d. pop: %d\n", status.MPI_SOURCE, pop);
+		}
+		if (pop >= maxN) {
+			printf(
+					"\tERROR: Simulation Stoped (maximal allowed population reached)\n");
+			break;
+		}
+
+		masterStatus = masterPoll();
+	}
+	return;
 }

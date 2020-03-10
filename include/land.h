@@ -1,7 +1,7 @@
 #ifndef LAND_H
 #define LAND_H
 
-#include "../src/actorCode.h"
+#include "actorCode.h"
 #include "../lib/pool.h"
 #include "../lib/ran2.h"
 #include "../lib/squirrel-functions.h"

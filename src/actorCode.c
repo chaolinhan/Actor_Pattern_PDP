@@ -1,4 +1,4 @@
-#include "actorCode.h"
+#include "../include/actorCode.h"
 
 void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
   // printf("\t\t\tactor started\n");

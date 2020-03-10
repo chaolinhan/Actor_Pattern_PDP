@@ -1,14 +1,17 @@
 #include "../lib/pool.h"
-#include "squirrel.h"
+#include "../include/squirrel.h"
 
 void squirrelRUN(int initN, int Ncell, int maxN, int initInfection,
                  int timeAll) {
   // printf("️🐿️ acting\n");
 
+
+
   MPI_Status status;
   int isInfected, rank, isAlive = 1;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-
+		// Let MASTER know
+	MPI_Send(&isAlive, 1, MPI_INT, MASTER_ID, POP_CTRL_TAG, MPI_COMM_WORLD);
   // Receive infection status
 	if (shouldWorkerStop()) return;
   MPI_Recv(&isInfected, 1, MPI_INT, MPI_ANY_SOURCE, INF_TAG, MPI_COMM_WORLD,
@@ -29,8 +32,6 @@ void squirrelRUN(int initN, int Ncell, int maxN, int initInfection,
   // MPI_Recv(&landID, 1, MPI_INT, MPI_ANY_SOURCE, LAND_TAG, MPI_COMM_WORLD,
   // 				 &status);
 
-	// Let MASTER know
-	MPI_Bsend(&isAlive, 1, MPI_INT, MASTER_ID, POP_CTRL_TAG, MPI_COMM_WORLD);
 
   // Squirrel action begin
   int popInf[50], infLv[50];
@@ -50,7 +51,7 @@ void squirrelRUN(int initN, int Ncell, int maxN, int initInfection,
     // Die
     if (infStep >= 50) {
       if (willDie(&state)) {
-        // printf("\tSquirrel %d DEAD X\n", rank);
+        printf("\tSquirrel %d DEAD X\n", rank);
 				isAlive = 0;
 				MPI_Bsend(&isAlive, 1, MPI_INT, MASTER_ID, POP_CTRL_TAG, MPI_COMM_WORLD);
         return;
@@ -67,7 +68,7 @@ void squirrelRUN(int initN, int Ncell, int maxN, int initInfection,
 
       if (willGiveBirth(avg_pop, &state)) {
         int sID = startWorkerProcess();
-        // printf("\tSquirrel %d giving birth to %d\n", rank, sID);
+        printf("\tSquirrel %d giving birth to %d\n", rank, sID);
         int msg = ROLE_SQUIRREL;
         int isInfected = 0;
         MPI_Bsend(&msg, 1, MPI_INT, sID, ROLE_TAG, MPI_COMM_WORLD);
@@ -109,6 +110,7 @@ void squirrelRUN(int initN, int Ncell, int maxN, int initInfection,
 		if (shouldWorkerStop()) break;
     MPI_Recv(&tempPopInf, 1, MPI_INT, cellID + 2, POP_INF_TAG, MPI_COMM_WORLD,
              &status);
+		if (shouldWorkerStop()) break;
     MPI_Recv(&tempInfLv, 1, MPI_INT, cellID + 2, INF_LV_TAG, MPI_COMM_WORLD,
              &status);
     popInf[cur] = tempPopInf;

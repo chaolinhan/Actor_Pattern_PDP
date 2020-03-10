@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "mpi.h"
-#include "../role/squirrel.h"
-#include "../role/land.h"
-#include "../role/timer.h"
+#include "squirrel.h"
+#include "land.h"
+#include "timer.h"
 
 // RANK
 
@@ -65,6 +65,11 @@
 // Land to Timer TAG
 #ifndef MONTH_TAG
 #define MONTH_TAG 30
+#endif
+
+// Timer to MASTER TAG
+#ifndef TIMER_CTRL_TAG
+#define TIMER_CTRL_TAG 40
 #endif
 
 void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll);
