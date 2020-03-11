@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "../lib/actor.h"
 #include "../include/actorCode.h"
 #include "../include/land.h"
 #include "../include/squirrel.h"
@@ -15,7 +16,7 @@ void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
   while (actorStatus) {
     // printf("\tactor awaken\n");
     int role, flag;
-    int parentID = getCommandData();
+    int parentID = actorGetCreatorID();
     MPI_Status st;
     int rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);

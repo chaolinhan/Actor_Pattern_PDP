@@ -5,6 +5,7 @@
 #include "../include/actorCode.h"
 #include "../lib/pool.h"
 #include "../lib/ran2.h"
+#include "../lib/actor.h"
 #include "../lib/squirrel-functions.h"
 
 void masterSimulationInit(int initN, int Ncell, int initInfection,
@@ -25,11 +26,12 @@ void startSquirrel(int initN, int initInfection, long seed) {
   printf("Initialise %d 🐿️\n", initN);
   for (i = 0; i < initN; i++) {
 
-    sID = startWorkerProcess();
+    sID = actorCreate();
     // actorSEND(ROLE_SQUIRREL, sID, ROLE_TAG);
     // Send role
     msg = ROLE_SQUIRREL;
-    MPI_Bsend(&msg, 1, MPI_INT, sID, ROLE_TAG, MPI_COMM_WORLD);
+    actorSendMsg(msg, sID, ROLE_TAG);
+//    MPI_Bsend(&msg, 1, MPI_INT, sID, ROLE_TAG, MPI_COMM_WORLD);
 
     // Send infection status
     if (Ninf > 0) {
@@ -37,7 +39,8 @@ void startSquirrel(int initN, int initInfection, long seed) {
       Ninf--;
     } else
       isInfected = 0;
-		MPI_Bsend(&isInfected, 1, MPI_INT, sID, INF_TAG, MPI_COMM_WORLD);
+    actorSendMsg(isInfected, sID, INF_TAG);
+//		MPI_Bsend(&isInfected, 1, MPI_INT, sID, INF_TAG, MPI_COMM_WORLD);
     // actorSEND(isInfected, sID, INF_TAG);
     //
     // Initialise and send born location
@@ -47,6 +50,7 @@ void startSquirrel(int initN, int initInfection, long seed) {
     diff=ran2(&seed);
     bornPOS[1] = (bornPOS[1]+diff)-(int)(bornPOS[1]+diff);
 		// sleep(1);
+		// TODO: add a function or not
     MPI_Bsend(bornPOS, 2, MPI_FLOAT, sID, POS_TAG, MPI_COMM_WORLD);
   }
 	return;
@@ -56,10 +60,11 @@ void startSquirrel(int initN, int initInfection, long seed) {
 void startLand(int initN, int initInfection) {
 	int lID, msg, i;
 	for (i = 0; i<16; i++) {
-		lID = startWorkerProcess();
+		lID = actorCreate();
 		// Send role
 		msg = ROLE_LAND;
-		MPI_Bsend(&msg, 1, MPI_INT, lID, ROLE_TAG, MPI_COMM_WORLD);
+		actorSendMsg(msg, lID, ROLE_TAG);
+//		MPI_Bsend(&msg, 1, MPI_INT, lID, ROLE_TAG, MPI_COMM_WORLD);
 	}
 
 	return;
@@ -67,18 +72,20 @@ void startLand(int initN, int initInfection) {
 
 void startTimer(int timeAll) {
   int tID, msg;
-  tID = startWorkerProcess();
+  tID = actorCreate();
 	// Send role
 	msg = ROLE_TIMER;
-	MPI_Bsend(&msg, 1, MPI_INT, tID, ROLE_TAG, MPI_COMM_WORLD);
+	actorSendMsg(msg, tID, ROLE_TAG);
+//	MPI_Bsend(&msg, 1, MPI_INT, tID, ROLE_TAG, MPI_COMM_WORLD);
 }
 
 void startCTRL(int maxN) {
 	int CID, msg;
-	CID = startWorkerProcess();
+	CID = actorCreate();
 	// Send role
 	msg = ROLE_CTRL;
-	MPI_Bsend(&msg, 1, MPI_INT, CID, ROLE_TAG, MPI_COMM_WORLD);
+	actorSendMsg(msg, CID, ROLE_TAG);
+//	MPI_Bsend(&msg, 1, MPI_INT, CID, ROLE_TAG, MPI_COMM_WORLD);
 }
 
 // void masterTerminationCtrl(int maxN) {
