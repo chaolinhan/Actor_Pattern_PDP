@@ -3,9 +3,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+
 #include "../include/actorCode.h"
 #include "../include/master.h"
 #include "../include/utility.h"
+#include "../lib/actor.h"
 #include "../lib/pool.h"
 #include "../lib/squirrel-functions.h"
 
@@ -39,8 +41,7 @@ int main(int argc, char *argv[]) {
     printf("\t\tMASTER finished\n");
     // shutdownPool();
   }
-	int rank;
-  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+	int rank = actorGetID();
 	if (rank == 0) exit(0);
   processPoolFinalise();
   MPI_Finalize();

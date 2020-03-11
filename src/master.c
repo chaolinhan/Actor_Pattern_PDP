@@ -1,9 +1,16 @@
 #include "../include/master.h"
+#include <mpi.h>
+#include <stdio.h>
+
+#include "../include/actorCode.h"
+#include "../lib/pool.h"
+#include "../lib/ran2.h"
+#include "../lib/squirrel-functions.h"
 
 void masterSimulationInit(int initN, int Ncell, int initInfection,
                           int timeAll, int maxN) {
   long seed = 20;
-  printf("Simulation started\ninitN = %d\n", initN);
+  printf("Simulation started\n");
 	initialiseRNG(&seed);
   startTimer(timeAll); // consider void
 	startLand(initN, initInfection); // consider void
