@@ -19,6 +19,7 @@ void timerRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
 	// Timer acts
   while (month <= timeAll-1) {
 		// printf("T\n");
+		if(shouldWorkerStop()) return;
     tNow = MPI_Wtime();
 		// Month change every two seconds
     if ((int)(tNow - tStart) >= month+1) {
@@ -35,9 +36,12 @@ void timerRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
 
   }
   // Send end signal to MASTER
-	int isAlive = -1;
-	// printf("Timer sending end signal\n");
-	MPI_Bsend(&isAlive, 1, MPI_INT, MASTER_ID, TIMER_CTRL_TAG, MPI_COMM_WORLD);
-	shutdownPool();
+	if (month > timeAll-1) {
+		int isAlive = -1;
+		// printf("Timer sending end signal\n");
+		MPI_Bsend(&isAlive, 1, MPI_INT, CTRL_ID, TIMER_CTRL_TAG, MPI_COMM_WORLD);
+		// shutdownPool();
+	}
+
   return;
 }

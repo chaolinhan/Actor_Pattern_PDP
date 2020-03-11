@@ -13,6 +13,9 @@
 #define TIMER_ID 1
 #endif
 
+#ifndef CTRL_ID
+#define CTRL_ID 18
+#endif
 // MASTER to ACTOR ROLE code
 #ifndef ROLE_TIMER
 #define ROLE_TIMER 30
@@ -47,10 +50,6 @@
 #define LAND_TAG 13
 #endif
 
-#ifndef POP_CTRL_TAG
-#define POP_CTRL_TAG 14
-#endif
-
 // Squirrel to Land TAG
 #ifndef STEP_INF_TAG
 #define STEP_INF_TAG 20
@@ -69,10 +68,16 @@
 #define MONTH_TAG 30
 #endif
 
-// Timer to MASTER TAG
+// Timer to CTRL TAG
 #ifndef TIMER_CTRL_TAG
 #define TIMER_CTRL_TAG 40
 #endif
+
+// Squirrel to CTRL TAG
+#ifndef POP_CTRL_TAG
+#define POP_CTRL_TAG 50
+#endif
+
 
 void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll);
 

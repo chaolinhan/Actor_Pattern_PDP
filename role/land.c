@@ -20,10 +20,11 @@ void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
   int flag, ii, isInfected, tempMonth = 0;
 
   while (month <= timeAll-1) {
-
+		// printf("Land %d is alive\n", rank);
     // Receive month from Timer
     MPI_Iprobe(TIMER_ID, MONTH_TAG, MPI_COMM_WORLD, &flag, &status);
     if (flag) {
+			if (shouldWorkerStop()) return;
       MPI_Recv(&tempMonth, 1, MPI_INT, TIMER_ID, MONTH_TAG, MPI_COMM_WORLD,
                &status);
     }
@@ -70,6 +71,6 @@ void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
 
 	  if(shouldWorkerStop()) break;
   }
-
+  // printf("Land %2d out loop\n", rank);
   return;
 }

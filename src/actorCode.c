@@ -24,7 +24,9 @@ void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
     // if (flag) {
     if (shouldWorkerStop())
       break;
+			// printf("\t%d recving R\n", rank);
     MPI_Recv(&role, 1, MPI_INT, parentID, ROLE_TAG, MPI_COMM_WORLD, &status);
+		// printf("\t%d recved R\n", rank);
     // printf("rank %d ROLE assigned: %d\n", rank, role);
     switch (role) {
     case ROLE_SQUIRREL:
@@ -38,7 +40,9 @@ void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
       actorRUN(timerRUN, initN, Ncell, maxN, initInfection, timeAll);
       break;
     case ROLE_CTRL:
-      actorRUN(ctrlRUN, initN, Ncell, maxN, initInfection, timeAll);
+      // actorRUN(ctrlRUN, initN, Ncell, maxN, initInfection, timeAll);
+			ctrlRUN(maxN);
+			break;
     }
     // }
 
