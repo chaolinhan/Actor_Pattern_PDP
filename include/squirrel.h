@@ -8,5 +8,5 @@
 #include "../lib/ran2.h"
 #include "../lib/squirrel-functions.h"
 
-void squirrelRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll);
+void squirrelRUN(int maxN, int timeAll);
 #endif

@@ -7,7 +7,7 @@
 #include "../lib/ran2.h"
 #include "../lib/squirrel-functions.h"
 
-void timerRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
+void timerRUN(int maxN, int timeAll) {
   MPI_Status status;
   int rank, month, ii;
   double tStart, tNow;

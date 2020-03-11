@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void actorRUN(void (*roleRUN)(int, int, int, int, int), int initN, int Ncell, int maxN, int initInfection, int timeAll) {
-	roleRUN(initN, Ncell, maxN, initInfection, timeAll);
+void actorRun(void (*roleRun)(int, int), int maxN, int timeAll) {
+	roleRun(maxN, timeAll);
 }
 
 int actorGetID(void) {
@@ -27,4 +27,19 @@ void actorSendMsg(int msg, int targetID, int tag) {
 
 int actorGetCreatorID(void) {
 	return getCommandData();
+}
+
+int actorStop(void) {
+	return shouldWorkerStop();
+}
+
+int actorDie(void) {
+	return workerSleep();
+}
+
+int actorRecv(int sourceID, int tag) {
+	int msg = -1;
+	MPI_Status st;
+	MPI_Recv(&msg, 1, MPI_INT, sourceID, tag, MPI_COMM_WORLD, &st);
+	return msg;
 }

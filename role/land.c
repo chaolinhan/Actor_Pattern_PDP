@@ -4,7 +4,7 @@
 
 #include "../include/land.h"
 
-void landRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
+void landRUN(int maxN, int timeAll) {
   MPI_Status status;
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);

@@ -2,6 +2,6 @@
 #define TIMER_H
 
 
-void timerRUN(int initN, int Ncell, int maxN, int initInfection, int timeAll);
+void timerRUN(int maxN, int timeAll);
 
 #endif

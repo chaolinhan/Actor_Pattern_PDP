@@ -5,8 +5,7 @@
 #include "../include/squirrel.h"
 #include "../lib/pool.h"
 
-void squirrelRUN(int initN, int Ncell, int maxN, int initInfection,
-                 int timeAll) {
+void squirrelRUN(int maxN, int timeAll) {
   // printf("️🐿️ acting\n");
 
   MPI_Status status;

@@ -4,10 +4,10 @@
 
 /**
  * Initiate a function to run specific actor code.
- * @param roleRUN pointing to the function to be executed.
+ * @param roleRun pointing to the function to be executed.
  * Rest parameters are supplied to the pointed function
  */
-void actorRUN(void (*roleRUN)(int, int, int, int, int), int initN, int Ncell, int maxN, int initInfection, int timeAll);
+void actorRun(void (*roleRun)(int, int), int maxN, int timeAll);
 
 /**
  * Get the ID of a actor. An ID is unique at any time points.
@@ -24,5 +24,11 @@ int actorCreate(void);
 void actorSendMsg(int msg, int targetID, int tag);
 
 int actorGetCreatorID(void);
+
+int actorStop(void);
+
+int actorDie(void);
+
+int actorRecv(int sourceID, int tag);
 
 #endif

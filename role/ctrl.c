@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void ctrlRUN(int maxN) {
+void ctrlRUN(int maxN, int timeAll) {
   int rank, isAlive = 1;
   int flag, pop = 0;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
