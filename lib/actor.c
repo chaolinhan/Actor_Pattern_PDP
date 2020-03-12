@@ -19,9 +19,9 @@ void actorRun(void (*roleRun)(int, int), int maxN, int timeAll) {
  * @return ID
  */
 int actorGetID(void) {
-  int rank;
-  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-  return rank;
+	int rank;
+	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+	return rank;
 }
 
 int actorCreate(void) {

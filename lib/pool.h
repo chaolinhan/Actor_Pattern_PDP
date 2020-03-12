@@ -3,17 +3,17 @@
 
 // The core process pool command which instructs what to do next
 enum PP_Control_Command {
-	PP_STOP=0,
-	PP_SLEEPING=1,
-	PP_WAKE=2,
-	PP_STARTPROCESS=3,
-	PP_RUNCOMPLETE=4
+	PP_STOP = 0,
+	PP_SLEEPING = 1,
+	PP_WAKE = 2,
+	PP_STARTPROCESS = 3,
+	PP_RUNCOMPLETE = 4
 };
 
 // An example data package which combines the command with some optional data, an example and can be extended
 struct PP_Control_Package {
 	enum PP_Control_Command command;
-    int data;
+	int data;
 };
 
 // Initialises the process pool
