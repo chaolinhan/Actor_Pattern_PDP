@@ -1,7 +1,3 @@
-#include "mpi.h"
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "../lib/actor.h"
 #include "../include/actorCode.h"
 #include "../include/land.h"
@@ -18,7 +14,6 @@ void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
 		int role, flag;
 		int parentID = actorGetCreatorID();
 //		int rank = actorGetID();
-		MPI_Status status;
 		// MPI_Iprobe(parentID, ROLE_TAG, MPI_COMM_WORLD, &flag, &st);
 		// if (flag) {
 		if (actorStop())

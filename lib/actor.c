@@ -52,3 +52,9 @@ int actorRecv(int sourceID, int tag) {
 	MPI_Recv(&msg, 1, MPI_INT, sourceID, tag, MPI_COMM_WORLD, &st);
 	return msg;
 }
+int actorProbe(int sourceID, int tag) {
+	int flag;
+	MPI_Status st;
+	MPI_Iprobe(sourceID, tag, MPI_COMM_WORLD, &flag, &st);
+	return flag;
+}

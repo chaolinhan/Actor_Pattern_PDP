@@ -1,14 +1,15 @@
 #include <mpi.h>
 #include <stdio.h>
+#include "../lib/actor.h"
 #include "../include/timer.h"
 #include "../include/actorCode.h"
 #include "../lib/pool.h"
 
 void timerRUN(int maxN, int timeAll) {
-  MPI_Status status;
-  int rank, month, ii;
+	int rank, month, ii;
   double tStart, tNow;
-  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+  rank = actorGetID();
+//  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   printf("Timer on %d READY, simulation length: %d\n", rank, timeAll);
   month = 0;
   tStart = MPI_Wtime();
@@ -16,7 +17,7 @@ void timerRUN(int maxN, int timeAll) {
 	// Timer acts
   while (month <= timeAll-1) {
 		// printf("T\n");
-		if(shouldWorkerStop()) return;
+		if(actorStop()) return;
     tNow = MPI_Wtime();
 		// Month change every two seconds
     if ((int)(tNow - tStart) >= month+1) {
@@ -25,20 +26,21 @@ void timerRUN(int maxN, int timeAll) {
 
 			// Send month to Land
 			for (ii = 2; ii<=17; ii++) {
-				MPI_Bsend(&month, 1, MPI_INT, ii, MONTH_TAG, MPI_COMM_WORLD);
+				actorSendMsg(month, ii, MONTH_TAG);
+//				MPI_Bsend(&month, 1, MPI_INT, ii, MONTH_TAG, MPI_COMM_WORLD);
 			}
     }
 
-		if(shouldWorkerStop()) return;
+		if(actorStop()) return;
 
   }
   // Send end signal to MASTER
 	if (month > timeAll-1) {
 		int isAlive = -1;
 		// printf("Timer sending end signal\n");
-		MPI_Bsend(&isAlive, 1, MPI_INT, CTRL_ID, TIMER_CTRL_TAG, MPI_COMM_WORLD);
+		actorSendMsg(isAlive, CTRL_ID, TIMER_CTRL_TAG);
+//		MPI_Bsend(&isAlive, 1, MPI_INT, CTRL_ID, TIMER_CTRL_TAG, MPI_COMM_WORLD);
 		// shutdownPool();
 	}
 
-  return;
-}
+  }
