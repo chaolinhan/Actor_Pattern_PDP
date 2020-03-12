@@ -8,13 +8,13 @@
 #include "../include/utility.h"
 #include "../lib/actor.h"
 #include "../lib/pool.h"
-#include "../lib/squirrel-functions.h"
 
 int main(int argc, char *argv[]) {
 	MPI_Init(&argc, &argv);
-	void *buf;
-	buf = malloc((sizeof(int) + MPI_BSEND_OVERHEAD) * 200);
-	MPI_Buffer_attach(&buf, (sizeof(int) + MPI_BSEND_OVERHEAD) * 200);
+	int statusCode = processPoolInit();
+//	void *buf;
+//	buf = malloc((sizeof(int) + MPI_BSEND_OVERHEAD) * 200);
+//	MPI_Buffer_attach(&buf, (sizeof(int) + MPI_BSEND_OVERHEAD) * 200);
 
 	// Read parameters from file.
 	int initN, Ncell, maxN, initInfection, timeAll;
@@ -27,7 +27,6 @@ int main(int argc, char *argv[]) {
 
 	// Actor pattern
 	// Actor
-	int statusCode = processPoolInit();
 	if (statusCode == 1) {
 		actorCode(initN, Ncell, maxN, initInfection, timeAll);
 	}
@@ -38,8 +37,8 @@ int main(int argc, char *argv[]) {
 		printf("\t\tMASTER finished\n");
 		// shutdownPool();
 	}
-	int rank = actorGetID();
-	if (rank == 0) exit(0);
+//	int rank = actorGetID();
+//	if (rank == 0) exit(0);
 	processPoolFinalise();
 	MPI_Finalize();
 	return 0;

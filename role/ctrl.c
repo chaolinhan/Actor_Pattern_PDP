@@ -11,7 +11,7 @@
 
 void ctrlRUN(int maxN, int timeAll) {
 	int rank, isAlive = 1;
-	int flag, pop = 0;
+	int pop = 0;
 	rank = actorGetID();
 //  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	printf("CTRL on %d READY\n", rank);
@@ -48,11 +48,12 @@ void ctrlRUN(int maxN, int timeAll) {
 			}
 
 			if (pop >= maxN) {
-				printf("\n\tERROR: Simulation Stoped (maximal allowed population "
+				printf("\nERROR: Simulation Stoped (maximal allowed population "
 							 "reached)\n");
 				sleep(1);
+				printf("\nUse ctrl+C to stop simulation\n");
 				shutdownPool();
-				break;
+				return;
 			}
 
 		}

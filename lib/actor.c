@@ -1,9 +1,6 @@
 #include "actor.h"
 #include "pool.h"
-#include "ran2.h"
 #include "mpi.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
  * Initiate a function to run specific actor code.
