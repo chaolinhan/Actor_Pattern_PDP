@@ -1,11 +1,11 @@
 # Parallel Design Pattern coursework Part Two
 Squirrel infection simulation using actor pattern
-# Getting srarted
+# Getting started
 - [Overview](#Overview)
 - [Build and Run](#Build-and-Run)
 
 # Overview
-This is a program that implements actor patterm to solve squirrel infection dynamics. Actor pattern code is included in `lib/`.
+This is a program that implements actor pattern to solve squirrel infection dynamics. Actor pattern code is included in `lib/`.
 ## File structure
 ```
 .
@@ -41,7 +41,7 @@ make clean
 ```
 make
 ```
-The output file `model` ia an executable. To run the simulation, fill your parameter settings in `para.txt` after the colon of each line:
+The output file `model` is an executable. To run the simulation, fill your parameter settings in `para.txt` after the colon of each line:
 ```
 initial: 34
 cells: 16
@@ -61,4 +61,4 @@ On a PBS system `simulation_Cirrus.pbs` can be submitted to run the simulation:
 ```
 qsub simulation_Cirrus.pbs
 ```
-`simulation_Cirrus.pbs` may be modified accordingly (user, working directories etc.) to be submitted.
+`simulation_Cirrus.pbs` may be modified accordingly (e.g. user, working directories etc.) to be submitted.gf
