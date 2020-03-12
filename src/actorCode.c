@@ -5,19 +5,24 @@
 #include "../include/timer.h"
 #include "../include/ctrl.h"
 
+/**
+ * Run actor code according to roles
+ * @param initN initial number of squirrels
+ * @param Ncell Number of cells
+ * @param initInfection initial number of infected squirrels
+ * @param maxN maximum allowed number of squirrels
+ * @param timeAll months to model
+ */
 void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
 	int actorStatus = 1;
 
 	while (actorStatus) {
+		// Receive role message
 		int role;
 		int parentID = actorGetCreatorID();
-//		int rank = actorGetID();
-		// MPI_Iprobe(parentID, ROLE_TAG, MPI_COMM_WORLD, &flag, &st);
-		// if (flag) {
 		role = actorRecv(parentID, ROLE_TAG).msg;
-//    MPI_Recv(&role, 1, MPI_INT, parentID, ROLE_TAG, MPI_COMM_WORLD, &status);
-		// printf("\t%d recved R\n", rank);
-		// printf("rank %d ROLE assigned: %d\n", rank, role);
+
+		// Assign tasks according to role
 		switch (role) {
 			case ROLE_SQUIRREL: actorRun(squirrelRUN, maxN, timeAll);
 				break;
@@ -29,9 +34,8 @@ void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
 				break;
 			default: break;
 		}
-		// }
 
-		// printf("\t\tactor %d going to sleep\n", rank);
+		// Actor dies after task finished
 		actorStatus = actorDie();
 	}
 }

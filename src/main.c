@@ -1,15 +1,12 @@
-#include <mpi.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 #include "../include/actorCode.h"
 #include "../include/master.h"
 #include "../include/utility.h"
 #include "../lib/actor.h"
-#include "../lib/pool.h"
 
 int main(int argc, char *argv[]) {
+	// Initialisation
 	int statusCode = actorInit(argc, argv);
 
 	// Read parameters from file.
@@ -34,10 +31,8 @@ int main(int argc, char *argv[]) {
 		// Wait for end
 		masterWait();
 	}
+
+	// Exit
 	actorExit(0);
-	//int rank = actorGetID();
-	//if (rank == 0) exit(0);
-	//processPoolFinalise();
-	//MPI_Finalize();
 	return 0;
 }

@@ -1,30 +1,23 @@
+#include <stdio.h>
 #include "../include/actorCode.h"
 #include "../include/ctrl.h"
 #include "../lib/actor.h"
-
 #include "../lib/pool.h"
-#include "../lib/ran2.h"
-#include "../lib/squirrel-functions.h"
-#include <mpi.h>
-#include <stdio.h>
-#include <stdlib.h>
 
+/**
+ * Run CTRL (controller) actor's code
+ * @param maxN maximum allowed number of squirrels
+ * @param timeAll months to model
+ */
 void ctrlRUN(int maxN, int timeAll) {
-	int rank, isAlive = 1;
-	int flag, pop = 0;
+	int rank, isAlive, pop = 0;
 	rank = actorGetID();
-//  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	printf("CTRL on %d READY\n", rank);
-	MPI_Status st;
 
 	while (1) {
-		// printf("CTRL working\n");
-		// End time Control
-//    MPI_Iprobe(TIMER_ID, TIMER_CTRL_TAG, MPI_COMM_WORLD, &flag, &st);
+		// Time termination control
 		if (actorProbe(TIMER_ID, TIMER_CTRL_TAG)) {
 			isAlive = actorRecv(TIMER_ID, TIMER_CTRL_TAG).msg;
-//      MPI_Recv(&isAlive, 1, MPI_INT, TIMER_ID, TIMER_CTRL_TAG, MPI_COMM_WORLD,
-//               &st);
 			sleep(1);
 			printf("\tFINISHED: Simulation Stoped. Population: %d\n", pop);
 			shutdownPool();
@@ -32,19 +25,13 @@ void ctrlRUN(int maxN, int timeAll) {
 		}
 
 		// Population control
-//    MPI_Iprobe(MPI_ANY_SOURCE, POP_CTRL_TAG, MPI_COMM_WORLD, &flag, &st);
+		// Receive squirrel birth or death message if there exists
 		if (actorProbe(ANY_SOURCE, POP_CTRL_TAG)) {
-//      MPI_Recv(&isAlive, 1, MPI_INT, st.MPI_SOURCE, POP_CTRL_TAG,
-//               MPI_COMM_WORLD, &st);
 			isAlive = actorRecv(ANY_SOURCE, POP_CTRL_TAG).msg;
 			if (isAlive == 1) {
 				pop++;
-				// printf("\tCTRL receive birth[V] signal from squirrel %d. pop: %d\n",
-				//        st.MPI_SOURCE, pop);
 			} else if (isAlive == 0) {
 				pop--;
-				// printf("\tCTRL receive death[X] signal from squirrel %d. pop: %d\n",
-				//        st.MPI_SOURCE, pop);
 			}
 
 			if (pop >= maxN) {
@@ -57,8 +44,6 @@ void ctrlRUN(int maxN, int timeAll) {
 			}
 
 		}
-
 		if (actorStop()) break;
-
 	}
 }
