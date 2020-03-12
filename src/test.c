@@ -8,7 +8,7 @@
 
 static void workerCode();
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
 	// Call MPI initialize first
 	MPI_Init(&argc, &argv);
 	/*
@@ -27,18 +27,18 @@ int main(int argc, char* argv[]) {
          * Basically it just starts 10 workers and then registers when each one has completed. When they have all completed it
          * shuts the entire pool down
 		 */
-		int i, activeWorkers=0, returnCode;
+		int i, activeWorkers = 0, returnCode;
 		MPI_Request initialWorkerRequests[10];
-		for (i=0;i<10;i++) {
+		for (i = 0; i < 10; i++) {
 			int workerPid = startWorkerProcess();
 			MPI_Irecv(NULL, 0, MPI_INT, workerPid, 0, MPI_COMM_WORLD, &initialWorkerRequests[i]);
 			activeWorkers++;
-			printf("Master started worker %d on MPI process %d\n", i , workerPid);
+			printf("Master started worker %d on MPI process %d\n", i, workerPid);
 		}
 		int masterStatus = masterPoll();
 		while (masterStatus) {
-			masterStatus=masterPoll();
-			for (i=0;i<10;i++) {
+			masterStatus = masterPoll();
+			for (i = 0; i < 10; i++) {
 				// Checks all outstanding workers that master spawned to see if they have completed
 				if (initialWorkerRequests[i] != MPI_REQUEST_NULL) {
 					MPI_Test(&initialWorkerRequests[i], &returnCode, MPI_STATUS_IGNORE);
@@ -46,7 +46,7 @@ int main(int argc, char* argv[]) {
 				}
 			}
 			// If we have no more active workers then quit poll loop which will effectively shut the pool down when  processPoolFinalise is called
-			if (activeWorkers==0) break;
+			if (activeWorkers == 0) break;
 		}
 	}
 	// Finalizes the process pool, call this before closing down MPI
@@ -61,7 +61,7 @@ static void workerCode() {
 	while (workerStatus) {
 		int myRank, parentId;
 		MPI_Comm_rank(MPI_COMM_WORLD, &myRank);
-		parentId = getCommandData();	// We encode the parent ID in the wake up command data
+		parentId = getCommandData();  // We encode the parent ID in the wake up command data
 		if (parentId == 0) {
 			// If my parent is the master (one of the 10 that the master started) then spawn two further children
 			int childOnePid = startWorkerProcess();
@@ -81,6 +81,6 @@ static void workerCode() {
 			MPI_Send(NULL, 0, MPI_INT, parentId, 0, MPI_COMM_WORLD);
 		}
 
-		workerStatus=workerSleep();	// This MPI process will sleep, further workers may be run on this process now
+		workerStatus = workerSleep();  // This MPI process will sleep, further workers may be run on this process now
 	}
 }
