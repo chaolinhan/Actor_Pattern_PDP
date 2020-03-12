@@ -21,6 +21,7 @@ int main(int argc, char *argv[]) {
   int initN, Ncell, maxN, initInfection, timeAll;
   if (inputCheck(argc) == 0) {
     printf("Check input\nUsage: ./model [input parameter files]\n");
+    return 0;
   } else {
     readPara(&initN, &Ncell, &maxN, &initInfection, &timeAll, argv);
   }
@@ -34,10 +35,7 @@ int main(int argc, char *argv[]) {
   // Master
   if (statusCode == 2) {
     masterSimulationInit(initN, Ncell, initInfection, timeAll, maxN);
-    int masterStatus = 1;
-    while (masterStatus) {
-      masterStatus = masterPoll();
-    }
+    masterWait();
     printf("\t\tMASTER finished\n");
     // shutdownPool();
   }

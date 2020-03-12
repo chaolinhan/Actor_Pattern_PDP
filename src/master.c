@@ -88,6 +88,13 @@ void startCTRL(int maxN) {
 //	MPI_Bsend(&msg, 1, MPI_INT, CID, ROLE_TAG, MPI_COMM_WORLD);
 }
 
+void masterWait(void) {
+	int masterStatus = 1;
+	while (masterStatus) {
+		masterStatus = masterPoll();
+	}
+}
+
 // void masterTerminationCtrl(int maxN) {
 //
 // 	int pop = 0, cnt = 0;

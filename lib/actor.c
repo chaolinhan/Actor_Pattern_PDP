@@ -5,10 +5,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * Initiate a function to run specific actor code.
+ * @param roleRun pointing to the function to be executed.
+ * Rest parameters are supplied to the pointed function
+ */
 void actorRun(void (*roleRun)(int, int), int maxN, int timeAll) {
 	roleRun(maxN, timeAll);
 }
 
+/**
+ * Get the ID of a actor. An ID is unique at any time points.
+ * @return ID
+ */
 int actorGetID(void) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
