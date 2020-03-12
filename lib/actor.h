@@ -11,6 +11,10 @@ struct actorMSG {
 	int src;
 };
 
+int actorInit(int argc, char *argv[]);
+
+void actorExit(int type);
+
 void actorRun(void (*roleRun)(int, int), int maxN, int timeAll);
 
 int actorGetID(void);

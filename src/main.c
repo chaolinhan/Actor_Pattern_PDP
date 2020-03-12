@@ -10,11 +10,7 @@
 #include "../lib/pool.h"
 
 int main(int argc, char *argv[]) {
-	MPI_Init(&argc, &argv);
-	int statusCode = processPoolInit();
-//	void *buf;
-//	buf = malloc((sizeof(int) + MPI_BSEND_OVERHEAD) * 200);
-//	MPI_Buffer_attach(&buf, (sizeof(int) + MPI_BSEND_OVERHEAD) * 200);
+	int statusCode = actorInit(argc, argv);
 
 	// Read parameters from file.
 	int initN, Ncell, maxN, initInfection, timeAll;
@@ -30,16 +26,18 @@ int main(int argc, char *argv[]) {
 	if (statusCode == 1) {
 		actorCode(initN, Ncell, maxN, initInfection, timeAll);
 	}
+
 	// Master
 	if (statusCode == 2) {
+		// Start simulation
 		masterSimulationInit(initN, Ncell, initInfection, timeAll, maxN);
+		// Wait for end
 		masterWait();
-		printf("\t\tMASTER finished\n");
-		// shutdownPool();
 	}
-	int rank = actorGetID();
-	if (rank == 0) exit(0);
-	processPoolFinalise();
-	MPI_Finalize();
+	actorExit(0);
+	//int rank = actorGetID();
+	//if (rank == 0) exit(0);
+	//processPoolFinalise();
+	//MPI_Finalize();
 	return 0;
 }

@@ -63,3 +63,15 @@ int actorProbe(int sourceID, int tag) {
 	MPI_Iprobe(sourceID, tag, MPI_COMM_WORLD, &flag, &st);
 	return flag;
 }
+int actorInit(int argc, char *argv[]) {
+	MPI_Init(&argc, &argv);
+	return processPoolInit();;
+}
+void actorExit(int type) {
+	if (type == 0) {
+		int rank = actorGetID();
+		if (rank == 0) exit(0);
+	}
+	processPoolFinalise();
+	MPI_Finalize();
+}

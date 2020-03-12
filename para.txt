@@ -1,5 +1,5 @@
 initial: 34
 cells: 16
-max: 40
+max: 200
 infected: 4
 month: 10
