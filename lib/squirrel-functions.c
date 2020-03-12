@@ -20,7 +20,7 @@
  * which also modify the seed
  */
 void initialiseRNG(long *seed) {
-	 ran2(seed);
+	ran2(seed);
 }
 
 /**
@@ -30,46 +30,46 @@ void initialiseRNG(long *seed) {
  * generator and is also modified.
  * x_new can point to x, and y_new can point to y
  */
-void squirrelStep(float x, float y, float* x_new, float* y_new, long * state){
+void squirrelStep(float x, float y, float *x_new, float *y_new, long *state) {
 
-    float diff=ran2(state);
-    *x_new=(x+diff)-(int)(x+diff);
+	float diff = ran2(state);
+	*x_new = (x + diff) - (int) (x + diff);
 
-    diff=ran2(state);
-    *y_new=(y+diff)-(int)(y+diff);
+	diff = ran2(state);
+	*y_new = (y + diff) - (int) (y + diff);
 }
 
 /**
  * Determines whether a squirrel will give birth or not based upon the average population and a random seed
  * which is modified. You can enclose this function call in an if statement if that is useful.
  */
-int willGiveBirth(float avg_pop, long * state) {
-	float probability=100.0; // Decrease this to make more likely, increase less likely
-    float tmp=avg_pop/probability;
+int willGiveBirth(float avg_pop, long *state) {
+	float probability = 100.0; // Decrease this to make more likely, increase less likely
+	float tmp = avg_pop / probability;
 
-    return (ran2(state)<(atan(tmp*tmp)/(4*tmp)));
+	return (ran2(state) < (atan(tmp * tmp) / (4 * tmp)));
 }
 
 /**
  * Determines whether a squirrel will catch the disease or not based upon the average infection level
  * and a random seed which is modified. You can enclose this function call in an if statement if that is useful.
  */
-int willCatchDisease(float avg_inf_level, long * state) {
-	float probability=1000.0; // Decrease this to make more likely, increase less likely
-    return(ran2(state)<(atan(((avg_inf_level < 40000 ? avg_inf_level : 40000))/probability)/M_PI));
+int willCatchDisease(float avg_inf_level, long *state) {
+	float probability = 1000.0; // Decrease this to make more likely, increase less likely
+	return (ran2(state) < (atan(((avg_inf_level < 40000 ? avg_inf_level : 40000)) / probability) / M_PI));
 }
 
 /**
  * Determines if a squirrel will die or not. The state is used in the random number generation and
  * is modified. You can enclose this function call in an if statement if that is useful.
  */
-int willDie(long * state) {
-    return(ran2(state)<(0.166666666));
+int willDie(long *state) {
+	return (ran2(state) < (0.166666666));
 }
 
 /**
  * Returns the id of the cell from its x and y coordinates.
  */
-int getCellFromPosition(float x, float y){
-    return((int)(x*4)+4*(int)(y*4));
+int getCellFromPosition(float x, float y) {
+	return ((int) (x * 4) + 4 * (int) (y * 4));
 }

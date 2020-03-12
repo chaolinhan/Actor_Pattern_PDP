@@ -1,9 +1,7 @@
-#include <stdio.h>
+#ifndef ACTORCODE_H
+#define ACTORCODE_H
+
 #include <stdlib.h>
-#include "mpi.h"
-#include "../role/squirrel.h"
-#include "../role/land.h"
-#include "../role/timer.h"
 
 // RANK
 
@@ -15,6 +13,9 @@
 #define TIMER_ID 1
 #endif
 
+#ifndef CTRL_ID
+#define CTRL_ID 18
+#endif
 // MASTER to ACTOR ROLE code
 #ifndef ROLE_TIMER
 #define ROLE_TIMER 30
@@ -26,6 +27,10 @@
 
 #ifndef ROLE_LAND
 #define ROLE_LAND 20
+#endif
+
+#ifndef ROLE_CTRL
+#define ROLE_CTRL 40
 #endif
 
 // MASTER to Squirrel TAG
@@ -43,10 +48,6 @@
 
 #ifndef LAND_TAG
 #define LAND_TAG 13
-#endif
-
-#ifndef POP_CTRL_TAG
-#define POP_CTRL_TAG 14
 #endif
 
 // Squirrel to Land TAG
@@ -67,4 +68,16 @@
 #define MONTH_TAG 30
 #endif
 
+// Timer to CTRL TAG
+#ifndef TIMER_CTRL_TAG
+#define TIMER_CTRL_TAG 40
+#endif
+
+// Squirrel to CTRL TAG
+#ifndef POP_CTRL_TAG
+#define POP_CTRL_TAG 50
+#endif
+
 void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll);
+
+#endif
