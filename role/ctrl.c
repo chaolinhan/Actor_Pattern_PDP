@@ -22,7 +22,7 @@ void ctrlRUN(int maxN, int timeAll) {
     // End time Control
 //    MPI_Iprobe(TIMER_ID, TIMER_CTRL_TAG, MPI_COMM_WORLD, &flag, &st);
     if (actorProbe(TIMER_ID, TIMER_CTRL_TAG)) {
-    	isAlive = actorRecv(TIMER_ID, TIMER_CTRL_TAG);
+    	isAlive = actorRecv(TIMER_ID, TIMER_CTRL_TAG).msg;
 //      MPI_Recv(&isAlive, 1, MPI_INT, TIMER_ID, TIMER_CTRL_TAG, MPI_COMM_WORLD,
 //               &st);
       sleep(1);
@@ -36,7 +36,7 @@ void ctrlRUN(int maxN, int timeAll) {
     if (actorProbe(ANY_SOURCE, POP_CTRL_TAG)) {
 //      MPI_Recv(&isAlive, 1, MPI_INT, st.MPI_SOURCE, POP_CTRL_TAG,
 //               MPI_COMM_WORLD, &st);
-			isAlive = actorRecv(ANY_SOURCE, POP_CTRL_TAG);
+			isAlive = actorRecv(ANY_SOURCE, POP_CTRL_TAG).msg;
       if (isAlive == 1) {
         pop++;
         // printf("\tCTRL receive birth[V] signal from squirrel %d. pop: %d\n",
@@ -66,6 +66,4 @@ void ctrlRUN(int maxN, int timeAll) {
 
   }
 	printf("CTRL out loop\n");
-
-  return;
 }

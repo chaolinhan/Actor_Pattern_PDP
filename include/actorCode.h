@@ -78,7 +78,6 @@
 #define POP_CTRL_TAG 50
 #endif
 
-
 void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll);
 
 #endif

@@ -1,7 +1,6 @@
 #ifndef MASTER_H
 #define MASTER_H
 
-
 void masterSimulationInit(int initN, int Ncell, int initInfection, int timeAll, int maxN);
 void masterWait(void);
 

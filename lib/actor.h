@@ -1,9 +1,15 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 
+#include <mpi.h>
 #ifndef ANY_SOURCE
 #define ANY_SOURCE MPI_ANY_SOURCE
 #endif
+
+struct actorMSG {
+	int msg;
+	int src;
+};
 
 void actorRun(void (*roleRun)(int, int), int maxN, int timeAll);
 
@@ -19,7 +25,7 @@ int actorStop(void);
 
 int actorDie(void);
 
-int actorRecv(int sourceID, int tag);
+struct actorMSG actorRecv(int sourceID, int tag);
 
 int actorProbe(int sourceID, int tag);
 

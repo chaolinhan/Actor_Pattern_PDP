@@ -46,11 +46,14 @@ int actorDie(void) {
 	return workerSleep();
 }
 
-int actorRecv(int sourceID, int tag) {
+struct actorMSG actorRecv(int sourceID, int tag) {
 	int msg = -1;
 	MPI_Status st;
+	struct actorMSG msgReturn;
 	MPI_Recv(&msg, 1, MPI_INT, sourceID, tag, MPI_COMM_WORLD, &st);
-	return msg;
+	msgReturn.src = st.MPI_SOURCE;
+	msgReturn.msg = msg;
+	return msgReturn;
 }
 int actorProbe(int sourceID, int tag) {
 	int flag;

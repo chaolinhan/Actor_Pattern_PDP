@@ -19,7 +19,7 @@ void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
 		if (actorStop())
 			break;
 		// printf("\t%d recving R\n", rank);
-		role = actorRecv(parentID, ROLE_TAG);
+		role = actorRecv(parentID, ROLE_TAG).msg;
 //    MPI_Recv(&role, 1, MPI_INT, parentID, ROLE_TAG, MPI_COMM_WORLD, &status);
 		// printf("\t%d recved R\n", rank);
 		// printf("rank %d ROLE assigned: %d\n", rank, role);
