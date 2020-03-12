@@ -61,4 +61,4 @@ On a PBS system `simulation_Cirrus.pbs` can be submitted to run the simulation:
 ```
 qsub simulation_Cirrus.pbs
 ```
-`simulation_Cirrus.pbs` may be modified accordingly (e.g. user, working directories etc.) to be submitted.gf
+`simulation_Cirrus.pbs` may be modified accordingly (e.g. user, working directories etc.) to be submitted.
