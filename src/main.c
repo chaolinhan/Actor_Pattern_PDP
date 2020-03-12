@@ -37,8 +37,8 @@ int main(int argc, char *argv[]) {
 		printf("\t\tMASTER finished\n");
 		// shutdownPool();
 	}
-//	int rank = actorGetID();
-//	if (rank == 0) exit(0);
+	int rank = actorGetID();
+	if (rank == 0) exit(0);
 	processPoolFinalise();
 	MPI_Finalize();
 	return 0;

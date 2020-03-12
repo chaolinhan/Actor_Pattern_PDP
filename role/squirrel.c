@@ -19,8 +19,6 @@ void squirrelRUN(int maxN, int timeAll) {
 
 	// Receive infection status
 
-	if (actorStop())
-		return;
 	// printf("\t%d recving A\n", rank);
 	isInfected = actorRecv(parentID, INF_TAG).msg;
 //  MPI_Recv(&isInfected, 1, MPI_INT, parentID, INF_TAG, MPI_COMM_WORLD, &status);
@@ -28,15 +26,8 @@ void squirrelRUN(int maxN, int timeAll) {
 
 	// Receive initial position
 	float bornPOS[2] = {0, 0};
-	if (actorStop())
-		return;
-	// printf("\t%d recving B\n", rank);
+	if (actorStop()) return;
 	MPI_Recv(bornPOS, 2, MPI_FLOAT, parentID, POS_TAG, MPI_COMM_WORLD, &status);
-// printf("\t%d recved B\n", rank);
-	// printf("🐿️ on %2d READY, isInfected: %d, position: (%.2f, %.2f) cell "
-	//        "%d, parent: %d\n",
-	//        rank, isInfected, bornPOS[0], bornPOS[1],
-	//        getCellFromPosition(bornPOS[0], bornPOS[1]), getCommandData());
 
 	// Squirrel action begin
 	int popInf[50], infLv[50];
@@ -117,16 +108,12 @@ void squirrelRUN(int maxN, int timeAll) {
 		// 	printf("\t now: (%.2f, %.2f), sending to %d\n", x, y, cellID+2);
 		// }
 
-		if (actorStop())
-			break;
 		// printf("\t%d recving 1\n", rank);
 //    MPI_Recv(&tempPopInf, 1, MPI_INT, cellID + 2, POP_INF_TAG, MPI_COMM_WORLD,
 //             &status);
 		// printf("\t%d recved 1\n", rank);
 		popInf[cur] = actorRecv(cellID + 2, POP_INF_TAG).msg;
 
-		if (actorStop())
-			break;
 		// printf("\t%d recving 2\n", rank);
 //    MPI_Recv(&tempInfLv, 1, MPI_INT, cellID + 2, INF_LV_TAG, MPI_COMM_WORLD,
 //             &status);
@@ -134,11 +121,9 @@ void squirrelRUN(int maxN, int timeAll) {
 		infLv[cur] = actorRecv(cellID + 2, INF_LV_TAG).msg;
 
 		cur++;
-		if (cur >= 50)
-			cur = cur % 50;
+		if (cur >= 50) cur = cur % 50;
 
 		// should
-		if (actorStop())
-			break;
+		if (actorStop()) break;
 	}
 }

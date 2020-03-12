@@ -1,6 +1,9 @@
 #include "actor.h"
 #include "pool.h"
+#include "ran2.h"
 #include "mpi.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
  * Initiate a function to run specific actor code.
@@ -46,12 +49,14 @@ int actorDie(void) {
 struct actorMSG actorRecv(int sourceID, int tag) {
 	int msg = -1;
 	MPI_Status st;
-	struct actorMSG msgReturn;
+	struct actorMSG msgReturn = {-1,-1};
+	if (actorStop()) return msgReturn;
 	MPI_Recv(&msg, 1, MPI_INT, sourceID, tag, MPI_COMM_WORLD, &st);
 	msgReturn.src = st.MPI_SOURCE;
 	msgReturn.msg = msg;
 	return msgReturn;
 }
+
 int actorProbe(int sourceID, int tag) {
 	int flag;
 	MPI_Status st;

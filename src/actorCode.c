@@ -6,19 +6,14 @@
 #include "../include/ctrl.h"
 
 void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
-	// printf("\t\t\tactor started\n");
 	int actorStatus = 1;
 
 	while (actorStatus) {
-		// printf("\tactor awaken\n");
-		int role, flag;
+		int role;
 		int parentID = actorGetCreatorID();
 //		int rank = actorGetID();
 		// MPI_Iprobe(parentID, ROLE_TAG, MPI_COMM_WORLD, &flag, &st);
 		// if (flag) {
-		if (actorStop())
-			break;
-		// printf("\t%d recving R\n", rank);
 		role = actorRecv(parentID, ROLE_TAG).msg;
 //    MPI_Recv(&role, 1, MPI_INT, parentID, ROLE_TAG, MPI_COMM_WORLD, &status);
 		// printf("\t%d recved R\n", rank);
@@ -36,9 +31,7 @@ void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll) {
 		}
 		// }
 
-		// MPI_Iprobe(parentID, ROLE_TAG, MPI_COMM_WORLD, &flag, &status);
 		// printf("\t\tactor %d going to sleep\n", rank);
 		actorStatus = actorDie();
 	}
-	// printf("test: sleep\n");
 }

@@ -24,7 +24,6 @@ void landRUN(int maxN, int timeAll) {
 		// Receive month from Timer
 //    MPI_Iprobe(TIMER_ID, MONTH_TAG, MPI_COMM_WORLD, &flag, &status);
 		if (actorProbe(TIMER_ID, MONTH_TAG)) {
-			if (actorStop()) return;
 			tempMonth = actorRecv(TIMER_ID, MONTH_TAG).msg;
 //      MPI_Recv(&tempMonth, 1, MPI_INT, TIMER_ID, MONTH_TAG, MPI_COMM_WORLD,
 //               &status);
@@ -63,7 +62,6 @@ void landRUN(int maxN, int timeAll) {
 		// Handshake success
 		if (actorProbe(ANY_SOURCE, STEP_INF_TAG)) {
 			// printf("\tHand shaked, Land %d and Squirrel %d\n", rank, status.MPI_SOURCE);
-			if (actorStop()) break;
 			struct actorMSG MSG = actorRecv(MPI_ANY_SOURCE, STEP_INF_TAG);
 			isInfected = MSG.msg;
 			//      MPI_Recv(&isInfected, 1, MPI_INT, status.MPI_SOURCE, STEP_INF_TAG,
