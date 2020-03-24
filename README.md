@@ -1,25 +1,26 @@
 # Parallel Design Pattern coursework Part Two
-Squirrel infection simulation using actor pattern
+Squirrel infection simulation using actor pattern.
 # Getting started
 - [Overview](#Overview)
 - [Build and Run](#Build-and-Run)
+- [Notes on code](#notes-on-code)
 
 # Overview
-This is a program that implements actor pattern to solve squirrel infection dynamics. Actor pattern code is included in `lib/`.
+This is a program that implements actor pattern to solve squirrel infection dynamics. Actor pattern code and provided squirrel functions are included in `lib/`.
 ## File structure
 ```
 .
-├── para.txt – parameter input
+├── para.txt // input parameter
 ├── Makefile
 ├── READ.md
 ├── include
-│   └── include path
+│   └── // include path
 ├── lib
-│   └── framework library path
+│   └── // framework library path
 ├── role
-│   └── source code – actor roles
+│   └── // source code – actor roles
 └── src
-    └── source code
+    └── // source code
 ```
 ## Test environment
 On **Cirrus** (CentOS Linux 7 (Core)):
@@ -62,3 +63,6 @@ On a PBS system `simulation_Cirrus.pbs` can be submitted to run the simulation:
 qsub simulation_Cirrus.pbs
 ```
 `simulation_Cirrus.pbs` may be modified accordingly (e.g. user, working directories etc.) to be submitted.
+
+# Notes on code
+The code basically follows lower camel case in variables, functions and structures. The coding style is [Google style](https://google.github.io/styleguide/cppguide.html).
