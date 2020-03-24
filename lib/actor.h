@@ -22,7 +22,7 @@ int actorInit(int argc, char *argv[]);
 // Finalise MPI and process poll
 void actorExit(int type);
 
-// Initiate a function 'roleRun()' to run specific actor code
+// Initiate a function 'roleRun()' to run specific actor role code
 void actorRun(void (*roleRun)(int, int), int maxN, int timeAll);
 
 // Get the ID of a actor. An ID is unique at any time points
@@ -40,7 +40,7 @@ int actorGetCreatorID(void);
 // Test if actor should stop acting
 int actorStop(void);
 
-// Destroy actor
+// Destroy the actor
 int actorDie(void);
 
 // Receive message from other actors

@@ -15,7 +15,7 @@ This is a program that implements actor pattern to solve squirrel infection dyna
 ├── include
 │   └── include path
 ├── lib
-│   └── library path
+│   └── framework library path
 ├── role
 │   └── source code – actor roles
 └── src
