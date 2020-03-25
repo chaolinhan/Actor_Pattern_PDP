@@ -86,7 +86,7 @@ void squirrelRUN(int maxN, int timeAll) {
 		cellID = getCellFromPosition(x, y);
 
 		// Update
-		// Send step and infection message to CTRL
+		// Send step and infection message to Land
 		actorSend(isInfected, getLandID(cellID), STEP_INF_TAG);
 		popInf[cur] = actorRecv(getLandID(cellID), POP_INF_TAG).msg; // get population influx
 		infLv[cur] = actorRecv(getLandID(cellID), INF_LV_TAG).msg; // get infection level
