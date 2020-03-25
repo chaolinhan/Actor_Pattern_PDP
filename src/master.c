@@ -3,7 +3,6 @@
 #include <stdio.h>
 
 #include "../include/actorCode.h"
-#include "../lib/pool.h"
 #include "../lib/actor.h"
 #include "../lib/squirrel-functions.h"
 
@@ -94,6 +93,6 @@ void startCTRL(void) {
 void masterWait(void) {
 	int masterStatus = 1;
 	while (masterStatus) {
-		masterStatus = masterPoll();
+		masterStatus = masterCheckActor();
 	}
 }

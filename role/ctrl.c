@@ -2,7 +2,6 @@
 #include "../include/actorCode.h"
 #include "../include/ctrl.h"
 #include "../lib/actor.h"
-#include "../lib/pool.h"
 
 /**
  * Run CTRL (controller) actor's code
@@ -20,7 +19,7 @@ void ctrlRUN(int maxN, int timeAll) {
 			isAlive = actorRecv(TIMER_ID, TIMER_CTRL_TAG).msg;
 			sleep(1);
 			printf("\tFINISHED: Simulation Stoped. Population: %d\n", pop);
-			shutdownPool();
+			actorAllStop();
 			return;
 		}
 
@@ -39,7 +38,7 @@ void ctrlRUN(int maxN, int timeAll) {
 							 "reached: %d\n", pop);
 				sleep(1);
 				printf("\nERROR: Simulation Stopped\nIf the simulation does not exit properly, use CTRL + C to terminate it.\n");
-				shutdownPool();
+				actorAllStop();
 				break;
 			}
 

@@ -109,7 +109,7 @@ int actorInit(int argc, char *argv[]) {
 /**
  * Finalise MPI and process poll
  * @param 0: force quite after the simulation stops
- *        other value: manual control quit
+ *        other value: manual control quite
  */
 void actorExit(int type) {
 	if (type == 0) {
@@ -118,4 +118,20 @@ void actorExit(int type) {
 	}
 	processPoolFinalise();
 	MPI_Finalize();
+}
+
+/**
+ * Stop all other actors
+ */
+void actorAllStop(void) {
+	shutdownPool();
+}
+
+/**
+ * Check actor and decide should stop wait or not
+ * @return 1 if should wait
+ *         other values if should not wait
+ */
+int masterCheckActor(void) {
+	return masterPoll();
 }
