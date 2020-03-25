@@ -49,7 +49,7 @@ struct actorMSG actorRecv(int sourceID, int tag);
 // Listen from other actors and find if there is a message to be received
 int actorProbe(int sourceID, int tag);
 
-// Stop all other actors
+// Stop all actors
 void actorAllStop(void);
 
 // Check actor and decide should stop wait or not
