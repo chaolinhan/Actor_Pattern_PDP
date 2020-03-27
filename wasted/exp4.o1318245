@@ -1,0 +1,223 @@
+Parameters read
+34	16	100	0	12
+Simulation started
+Initialise 34 🐿️
+Timer on 1 READY, simulation length: 12
+CTRL on 18 READY
+
+		    Timer report: month  1    
+Land on rank  2, month  1 	influx: 326865	infected:  0
+Land on rank  7, month  1 	influx: 325637	infected:  0
+Land on rank  8, month  1 	influx: 326563	infected:  0
+Land on rank  6, month  1 	influx: 326563	infected:  0
+Land on rank  5, month  1 	influx: 326223	infected:  0
+Land on rank 14, month  1 	influx: 326549	infected:  0
+Land on rank 10, month  1 	influx: 325861	infected:  0
+Land on rank 13, month  1 	influx: 326061	infected:  0
+Land on rank  3, month  1 	influx: 326869	infected:  0
+Land on rank  9, month  1 	influx: 326238	infected:  0
+Land on rank 11, month  1 	influx: 326517	infected:  0
+Land on rank 12, month  1 	influx: 326350	infected:  0
+Land on rank 15, month  1 	influx: 326430	infected:  0
+Land on rank 16, month  1 	influx: 326996	infected:  0
+Land on rank 17, month  1 	influx: 326869	infected:  0
+Land on rank  4, month  1 	influx: 327126	infected:  0
+
+		    Timer report: month  2    
+Land on rank  2, month  2 	influx: 679000	infected:  0
+Land on rank  3, month  2 	influx: 679240	infected:  0
+Land on rank  4, month  2 	influx: 678347	infected:  0
+Land on rank  5, month  2 	influx: 679289	infected:  0
+Land on rank  6, month  2 	influx: 679367	infected:  0
+Land on rank  7, month  2 	influx: 678050	infected:  0
+Land on rank  8, month  2 	influx: 678513	infected:  0
+Land on rank  9, month  2 	influx: 678355	infected:  0
+Land on rank 10, month  2 	influx: 677610	infected:  0
+Land on rank 11, month  2 	influx: 677695	infected:  0
+Land on rank 12, month  2 	influx: 677816	infected:  0
+Land on rank 13, month  2 	influx: 677886	infected:  0
+Land on rank 14, month  2 	influx: 678485	infected:  0
+Land on rank 15, month  2 	influx: 678297	infected:  0
+Land on rank 16, month  2 	influx: 678710	infected:  0
+Land on rank 17, month  2 	influx: 678704	infected:  0
+
+		    Timer report: month  3    
+Land on rank  2, month  3 	influx: 1050075	infected:  0
+Land on rank  3, month  3 	influx: 1050622	infected:  0
+Land on rank  4, month  3 	influx: 1049977	infected:  0
+Land on rank  5, month  3 	influx: 1052267	infected:  0
+Land on rank  6, month  3 	influx: 1052604	infected:  0
+Land on rank  7, month  3 	influx: 1050841	infected:  0
+Land on rank  8, month  3 	influx: 1050842	infected:  0
+Land on rank  9, month  3 	influx: 1051842	infected:  0
+Land on rank 10, month  3 	influx: 1049936	infected:  0
+Land on rank 11, month  3 	influx: 1050842	infected:  0
+Land on rank 12, month  3 	influx: 1049823	infected:  0
+Land on rank 13, month  3 	influx: 1050431	infected:  0
+Land on rank 14, month  3 	influx: 1050400	infected:  0
+Land on rank 15, month  3 	influx: 1050852	infected:  0
+Land on rank 16, month  3 	influx: 1051252	infected:  0
+Land on rank 17, month  3 	influx: 1051847	infected:  0
+
+		    Timer report: month  4    
+Land on rank  2, month  4 	influx: 1106071	infected:  0
+Land on rank  3, month  4 	influx: 1106772	infected:  0
+Land on rank  4, month  4 	influx: 1105377	infected:  0
+Land on rank  5, month  4 	influx: 1110376	infected:  0
+Land on rank  6, month  4 	influx: 1108964	infected:  0
+Land on rank  7, month  4 	influx: 1108352	infected:  0
+Land on rank  8, month  4 	influx: 1107619	infected:  0
+Land on rank  9, month  4 	influx: 1108329	infected:  0
+Land on rank 10, month  4 	influx: 1107614	infected:  0
+Land on rank 11, month  4 	influx: 1108258	infected:  0
+Land on rank 12, month  4 	influx: 1107947	infected:  0
+Land on rank 13, month  4 	influx: 1106685	infected:  0
+Land on rank 14, month  4 	influx: 1106474	infected:  0
+Land on rank 15, month  4 	influx: 1107829	infected:  0
+Land on rank 16, month  4 	influx: 1107256	infected:  0
+Land on rank 17, month  4 	influx: 1110174	infected:  0
+
+		    Timer report: month  5    
+Land on rank  2, month  5 	influx: 1140593	infected:  0
+Land on rank  3, month  5 	influx: 1141353	infected:  0
+Land on rank  4, month  5 	influx: 1140433	infected:  0
+Land on rank  5, month  5 	influx: 1143964	infected:  0
+Land on rank  6, month  5 	influx: 1143475	infected:  0
+Land on rank  7, month  5 	influx: 1143778	infected:  0
+Land on rank  8, month  5 	influx: 1143191	infected:  0
+Land on rank  9, month  5 	influx: 1143312	infected:  0
+Land on rank 10, month  5 	influx: 1143158	infected:  0
+Land on rank 11, month  5 	influx: 1144322	infected:  0
+Land on rank 12, month  5 	influx: 1142703	infected:  0
+Land on rank 13, month  5 	influx: 1141807	infected:  0
+Land on rank 14, month  5 	influx: 1142307	infected:  0
+Land on rank 15, month  5 	influx: 1143774	infected:  0
+Land on rank 16, month  5 	influx: 1144252	infected:  0
+Land on rank 17, month  5 	influx: 1144683	infected:  0
+
+		    Timer report: month  6    
+Land on rank  2, month  6 	influx: 1158942	infected:  0
+Land on rank  3, month  6 	influx: 1160677	infected:  0
+Land on rank  4, month  6 	influx: 1159193	infected:  0
+Land on rank  5, month  6 	influx: 1160509	infected:  0
+Land on rank  6, month  6 	influx: 1160316	infected:  0
+Land on rank  7, month  6 	influx: 1160321	infected:  0
+Land on rank  8, month  6 	influx: 1161647	infected:  0
+Land on rank  9, month  6 	influx: 1160562	infected:  0
+Land on rank 10, month  6 	influx: 1161187	infected:  0
+Land on rank 11, month  6 	influx: 1162698	infected:  0
+Land on rank 12, month  6 	influx: 1161344	infected:  0
+Land on rank 13, month  6 	influx: 1158865	infected:  0
+Land on rank 14, month  6 	influx: 1160106	infected:  0
+Land on rank 15, month  6 	influx: 1161614	infected:  0
+Land on rank 16, month  6 	influx: 1162351	infected:  0
+Land on rank 17, month  6 	influx: 1162047	infected:  0
+
+		    Timer report: month  7    
+Land on rank  2, month  7 	influx: 1170722	infected:  0
+Land on rank  3, month  7 	influx: 1172853	infected:  0
+Land on rank  4, month  7 	influx: 1171443	infected:  0
+Land on rank  5, month  7 	influx: 1172291	infected:  0
+Land on rank  6, month  7 	influx: 1172983	infected:  0
+Land on rank  7, month  7 	influx: 1173232	infected:  0
+Land on rank  8, month  7 	influx: 1174950	infected:  0
+Land on rank  9, month  7 	influx: 1172857	infected:  0
+Land on rank 10, month  7 	influx: 1173448	infected:  0
+Land on rank 11, month  7 	influx: 1173788	infected:  0
+Land on rank 12, month  7 	influx: 1172047	infected:  0
+Land on rank 13, month  7 	influx: 1171478	infected:  0
+Land on rank 14, month  7 	influx: 1172493	infected:  0
+Land on rank 15, month  7 	influx: 1175418	infected:  0
+Land on rank 16, month  7 	influx: 1175127	infected:  0
+Land on rank 17, month  7 	influx: 1172269	infected:  0
+
+		    Timer report: month  8    
+Land on rank  2, month  8 	influx: 1184101	infected:  0
+Land on rank  3, month  8 	influx: 1185171	infected:  0
+Land on rank  4, month  8 	influx: 1186023	infected:  0
+Land on rank  5, month  8 	influx: 1186403	infected:  0
+Land on rank  6, month  8 	influx: 1185245	infected:  0
+Land on rank  7, month  8 	influx: 1185864	infected:  0
+Land on rank  8, month  8 	influx: 1188171	infected:  0
+Land on rank  9, month  8 	influx: 1185727	infected:  0
+Land on rank 10, month  8 	influx: 1186847	infected:  0
+Land on rank 11, month  8 	influx: 1186220	infected:  0
+Land on rank 12, month  8 	influx: 1186452	infected:  0
+Land on rank 13, month  8 	influx: 1185350	infected:  0
+Land on rank 14, month  8 	influx: 1185076	infected:  0
+Land on rank 15, month  8 	influx: 1187309	infected:  0
+Land on rank 16, month  8 	influx: 1186379	infected:  0
+Land on rank 17, month  8 	influx: 1187185	infected:  0
+
+		    Timer report: month  9    
+Land on rank  5, month  9 	influx: 1201748	infected:  0
+Land on rank  7, month  9 	influx: 1200356	infected:  0
+Land on rank  2, month  9 	influx: 1200110	infected:  0
+Land on rank  3, month  9 	influx: 1199845	infected:  0
+Land on rank  4, month  9 	influx: 1200210	infected:  0
+Land on rank  6, month  9 	influx: 1200226	infected:  0
+Land on rank  8, month  9 	influx: 1203594	infected:  0
+Land on rank  9, month  9 	influx: 1198382	infected:  0
+Land on rank 10, month  9 	influx: 1200575	infected:  0
+Land on rank 11, month  9 	influx: 1200683	infected:  0
+Land on rank 12, month  9 	influx: 1200145	infected:  0
+Land on rank 13, month  9 	influx: 1200035	infected:  0
+Land on rank 14, month  9 	influx: 1199007	infected:  0
+Land on rank 15, month  9 	influx: 1201824	infected:  0
+Land on rank 16, month  9 	influx: 1201069	infected:  0
+Land on rank 17, month  9 	influx: 1199647	infected:  0
+
+		    Timer report: month 10    
+Land on rank  2, month 10 	influx: 1214914	infected:  0
+Land on rank  3, month 10 	influx: 1213751	infected:  0
+Land on rank  4, month 10 	influx: 1214842	infected:  0
+Land on rank  5, month 10 	influx: 1214043	infected:  0
+Land on rank  6, month 10 	influx: 1213246	infected:  0
+Land on rank  7, month 10 	influx: 1213771	infected:  0
+Land on rank  8, month 10 	influx: 1216216	infected:  0
+Land on rank  9, month 10 	influx: 1212713	infected:  0
+Land on rank 10, month 10 	influx: 1215080	infected:  0
+Land on rank 11, month 10 	influx: 1215096	infected:  0
+Land on rank 12, month 10 	influx: 1213233	infected:  0
+Land on rank 13, month 10 	influx: 1214236	infected:  0
+Land on rank 14, month 10 	influx: 1213435	infected:  0
+Land on rank 15, month 10 	influx: 1213459	infected:  0
+Land on rank 16, month 10 	influx: 1215567	infected:  0
+Land on rank 17, month 10 	influx: 1213380	infected:  0
+
+		    Timer report: month 11    
+Land on rank  2, month 11 	influx: 1228201	infected:  0
+Land on rank  3, month 11 	influx: 1228825	infected:  0
+Land on rank  4, month 11 	influx: 1227964	infected:  0
+Land on rank  5, month 11 	influx: 1226338	infected:  0
+Land on rank  6, month 11 	influx: 1227076	infected:  0
+Land on rank  7, month 11 	influx: 1226874	infected:  0
+Land on rank  8, month 11 	influx: 1227749	infected:  0
+Land on rank  9, month 11 	influx: 1225988	infected:  0
+Land on rank 10, month 11 	influx: 1226789	infected:  0
+Land on rank 11, month 11 	influx: 1229482	infected:  0
+Land on rank 12, month 11 	influx: 1225917	infected:  0
+Land on rank 13, month 11 	influx: 1228235	infected:  0
+Land on rank 14, month 11 	influx: 1226945	infected:  0
+Land on rank 15, month 11 	influx: 1228029	infected:  0
+Land on rank 16, month 11 	influx: 1229691	infected:  0
+Land on rank 17, month 11 	influx: 1225081	infected:  0
+
+		    Timer report: month 12    
+Land on rank  2, month 12 	influx: 1239941	infected:  0
+Land on rank  3, month 12 	influx: 1239836	infected:  0
+Land on rank  4, month 12 	influx: 1239361	infected:  0
+Land on rank  5, month 12 	influx: 1237449	infected:  0
+Land on rank  6, month 12 	influx: 1238114	infected:  0
+Land on rank  7, month 12 	influx: 1238504	infected:  0
+Land on rank  8, month 12 	influx: 1237377	infected:  0
+Land on rank  9, month 12 	influx: 1237845	infected:  0
+Land on rank 10, month 12 	influx: 1238171	infected:  0
+Land on rank 11, month 12 	influx: 1237990	infected:  0
+Land on rank 12, month 12 	influx: 1235941	infected:  0
+Land on rank 13, month 12 	influx: 1240217	infected:  0
+Land on rank 14, month 12 	influx: 1239975	infected:  0
+Land on rank 15, month 12 	influx: 1238319	infected:  0
+Land on rank 16, month 12 	influx: 1240466	infected:  0
+Land on rank 17, month 12 	influx: 1238930	infected:  0
+	FINISHED: Simulation Stoped. Population: 94
