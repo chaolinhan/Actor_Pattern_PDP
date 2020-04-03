@@ -6,6 +6,9 @@
 #define ANY_SOURCE MPI_ANY_SOURCE
 #endif
 
+#ifndef ANY_TAG
+#define ANY_TAG MPI_ANY_TAG
+#endif
 /**
  * Used to stored received message
  * msg: message content
@@ -49,7 +52,7 @@ struct actorMSG actorRecv(int sourceID, int tag);
 // Listen from other actors and find if there is a message to be received
 int actorProbe(int sourceID, int tag);
 
-// Stop all actors
+// Stop all other actors
 void actorAllStop(void);
 
 // Check actor and decide should stop wait or not

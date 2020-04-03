@@ -69,7 +69,7 @@ int actorDie(void) {
 /**
  * Receive message from other actors
  * @param sourceID the sender's ID; use ANY_SOURCE to receive from anyone
- * @param tag message tag
+ * @param tag message tag; use ANY_TAG to receive messages with any tag
  * @return struct actorMSG containing sender ID and message content
  */
 struct actorMSG actorRecv(int sourceID, int tag) {

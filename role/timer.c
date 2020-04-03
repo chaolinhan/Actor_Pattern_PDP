@@ -23,14 +23,18 @@ void timerRUN(int maxN, int timeAll) {
 		tNow = MPI_Wtime();
 
 		// Month changes every second
-		if ((int) ((tNow - tStart)/0.5) >= month + 1) {
+		if ((int) (tNow - tStart) >= month + 1) {
 			month++;
 			printf("\n\t\t    Timer report: month %2d    \n", month);
 
 			// Send month to Land
 			for (ii = 2; ii <= 17; ii++) actorSend(month, ii, MONTH_TAG);
+
+			// Send month to CTRL
+			actorSend(month, CTRL_ID, TIMER_CTRL_TAG);
 		}
 		if (actorStop()) return;
+
 	}
 
 	// Send end signal to CTRL

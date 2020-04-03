@@ -4,7 +4,7 @@
 #PBS -l select=6:ncpus=36
 #PBS -l place=scatter:excl
 #PBS -l walltime=0:02:00
-#PBS -A d171
+#PBS -A d171-s1898201
 
 cd $PBS_O_WORKDIR
 

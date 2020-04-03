@@ -9,18 +9,22 @@
  * @param timeAll months to model
  */
 void ctrlRUN(int maxN, int timeAll) {
-	int rank, isAlive, pop = 0;
+	int rank, isAlive, pop = 0, month=0;
 	rank = actorGetID();
 	printf("CTRL on %d READY\n", rank);
 
 	while (1) {
-		// Time termination control
-		if (actorProbe(TIMER_ID, TIMER_CTRL_TAG)) {
-			isAlive = actorRecv(TIMER_ID, TIMER_CTRL_TAG).msg;
-			sleep(1);
-			printf("\tFINISHED: Simulation Stoped. Population: %d\n", pop);
-			actorAllStop();
-			return;
+		// Monthly report and termination control
+		if (actorProbe(TIMER_ID, ANY_TAG)) {
+			month = actorRecv(TIMER_ID, ANY_TAG).msg;
+			if (month == -1) {
+				sleep(1);
+				printf("\tFINISHED: Simulation Stoped. Population: %d\n", pop);
+				actorAllStop();
+				return;
+			} else {
+				printf("CTRL on rank %2d, month %2d \tpopulation: %d\n", rank, month, pop);
+			}
 		}
 
 		// Population control
