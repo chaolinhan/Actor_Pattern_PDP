@@ -15,7 +15,7 @@ SRC = \
 	role/timer.c \
 	role/ctrl.c
 
-LFLAGS = -lm -O2
+LFLAGS = -lm -O3
 CC=mpicc
 
 all:

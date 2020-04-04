@@ -32,20 +32,22 @@ void landRUN(int maxN, int timeAll) {
 			if (month >= 1) {
 				populationInflux[cur] = moPopulationInflux;
 				infectionLevel[cur] = moInfectionLevel;
-				cur++;
-				if (cur >= 3)
-					cur -= 3;
 				moPopulationInflux = 0;
 				moInfectionLevel = 0;
+				cur++;
+				if (cur >= 3) cur -= 3;
 				allPopulationInflux =
 						populationInflux[0] + populationInflux[1] + populationInflux[2];
 				allInfectionLevel =
 						infectionLevel[0] + infectionLevel[1] + infectionLevel[2];
-				printf("Land on rank %2d, month %2d \tinflux: %2d\tinfected: %2d\n",
+				printf("Land on rank %2d, month %2d \tinflux: %2d\tinfected: %2d,  %d  %d  %d  |  %d  %d  %d\n",
 							 rank,
 							 month,
 							 allPopulationInflux,
-							 allInfectionLevel);
+							 allInfectionLevel,
+							 populationInflux[0], populationInflux[1], populationInflux[2],
+							 infectionLevel[0], infectionLevel[1], infectionLevel[2]
+							 );
 			}
 
 		}
@@ -55,11 +57,11 @@ void landRUN(int maxN, int timeAll) {
 		if (actorProbe(ANY_SOURCE, STEP_INF_TAG)) {
 			struct actorMSG MSG = actorRecv(ANY_SOURCE, STEP_INF_TAG);
 			isInfected = MSG.msg;
-			moPopulationInflux++;
+			if (isInfected == 1) {moInfectionLevel++;moPopulationInflux++;}
+			if (isInfected == 0) {moPopulationInflux++;}
 			// Send populationInflux and infectionLevel to squirrels
 			actorSend(allPopulationInflux, MSG.src, POP_INF_TAG);
 			actorSend(allInfectionLevel, MSG.src, INF_LV_TAG);
-			if (isInfected == 1) moInfectionLevel++;
 		}
 
 		if (actorStop()) break;

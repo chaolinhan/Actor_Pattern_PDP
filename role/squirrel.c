@@ -103,6 +103,6 @@ void squirrelRUN(int maxN, int timeAll) {
  * @param cellID
  * @return MPI rank
  */
-static int getLandID(int cellID) {
+int getLandID(int cellID) {
 	return cellID + 2;
 }

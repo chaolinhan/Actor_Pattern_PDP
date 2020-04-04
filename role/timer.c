@@ -22,8 +22,8 @@ void timerRUN(int maxN, int timeAll) {
 		if (actorStop()) return;
 		tNow = MPI_Wtime();
 
-		// Month changes every second
-		if ((int) (tNow - tStart) >= month + 1) {
+		// Month changes every half second
+		if ((int) ((tNow - tStart)/0.5) >= month + 1) {
 			month++;
 			printf("\n\t\t    Timer report: month %2d    \n", month);
 
