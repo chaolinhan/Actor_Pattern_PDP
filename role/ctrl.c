@@ -18,7 +18,7 @@ void ctrlRUN(int maxN, int timeAll) {
 		if (actorProbe(TIMER_ID, ANY_TAG)) {
 			month = actorRecv(TIMER_ID, ANY_TAG).msg;
 			if (month == -1) {
-				sleep(1);
+				usleep(400);
 				printf("\tFINISHED: Simulation Stoped. Population: %d\n", pop);
 				actorAllStop();
 				return;

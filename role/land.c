@@ -40,13 +40,13 @@ void landRUN(int maxN, int timeAll) {
 						populationInflux[0] + populationInflux[1] + populationInflux[2];
 				allInfectionLevel =
 						infectionLevel[0] + infectionLevel[1] + infectionLevel[2];
-				printf("Land on rank %2d, month %2d \tinflux: %2d\tinfected: %2d,  %d  %d  %d  |  %d  %d  %d\n",
+				printf("Land on rank %2d, month %2d \tinflux: %2d\tinfected: %2d\n",
 							 rank,
 							 month,
 							 allPopulationInflux,
-							 allInfectionLevel,
-							 populationInflux[0], populationInflux[1], populationInflux[2],
-							 infectionLevel[0], infectionLevel[1], infectionLevel[2]
+							 allInfectionLevel
+							 //populationInflux[0], populationInflux[1], populationInflux[2],
+							 //infectionLevel[0], infectionLevel[1], infectionLevel[2]
 							 );
 			}
 

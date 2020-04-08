@@ -109,7 +109,7 @@ int actorInit(int argc, char *argv[]) {
 /**
  * Finalise MPI and process poll
  * @param 0: force quite after the simulation stops
- *        other value: manual control quite
+ *        other value: manual control quit
  */
 void actorExit(int type) {
 	if (type == 0) {
