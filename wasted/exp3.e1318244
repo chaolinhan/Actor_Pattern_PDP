@@ -1,0 +1,2 @@
+MPT ERROR: MPI_COMM_WORLD rank 0 has terminated without calling MPI_Finalize()
+	aborting job

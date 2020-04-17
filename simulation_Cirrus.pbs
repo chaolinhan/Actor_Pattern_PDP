@@ -1,9 +1,9 @@
 #!/bin/bash --login
 #
 #PBS -N exp1
-#PBS -l select=6:ncpus=36
+#PBS -l select=4:ncpus=36
 #PBS -l place=scatter:excl
-#PBS -l walltime=2:00:00
+#PBS -l walltime=0:02:00
 #PBS -A d171-s1898201
 
 cd $PBS_O_WORKDIR
@@ -12,4 +12,4 @@ cd $PBS_O_WORKDIR
 module load intel-compilers-18
 
 
-mpiexec_mpt -ppn 36 -n 216 ./model para.txt
+mpiexec_mpt -ppn 36 -n 100 ./model para.txt

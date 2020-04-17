@@ -1,10 +1,7 @@
 #ifndef ACTORCODE_H
 #define ACTORCODE_H
 
-#include <stdlib.h>
-
 // RANK
-
 #ifndef MASTER_ID
 #define MASTER_ID 0
 #endif
@@ -16,6 +13,7 @@
 #ifndef CTRL_ID
 #define CTRL_ID 18
 #endif
+
 // MASTER to ACTOR ROLE code
 #ifndef ROLE_TIMER
 #define ROLE_TIMER 30
@@ -78,6 +76,7 @@
 #define POP_CTRL_TAG 50
 #endif
 
+// Actor run code
 void actorCode(int initN, int Ncell, int maxN, int initInfection, int timeAll);
 
 #endif

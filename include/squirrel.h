@@ -1,12 +1,11 @@
 #ifndef SQUIRREL_H
 #define SQUIRREL_H
 
-#include "string.h"
-#include "stdio.h"
-#include "actorCode.h"
-#include "../lib/pool.h"
-#include "../lib/ran2.h"
-#include "../lib/squirrel-functions.h"
-
+// Run squirrel actor's code
 void squirrelRUN(int maxN, int timeAll);
+
+// Get MPI rank from cell ID
+static int getLandID(int cellID);
+
 #endif
+
